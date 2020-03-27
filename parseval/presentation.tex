@@ -1,0 +1,81 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, mexico]{babel}
+
+\title{Identidad de Parseval}
+\author{Miguel Angel Gomez Barrera}
+\institute{Fundación Universitaria Konrad Lorenz}
+\date{2020}
+
+\begin{document}
+	\frame{\titlepage}
+	\begin{frame}
+	\frametitle{Resultados preliminares}
+	Sea número complejo $z = a + ib$, su conjugado se le de denota por $z^*$ o $\bar{z}$ tal que  $\bar{z} = a - ib$. \pause
+	\begin{block}{Propiedad producto}
+		$$z \cdot \bar{z} = a^2 + b^2$$
+	\end{block}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Resultados preliminares}
+		\framesubtitle{Serie compleja de Fourier.}
+		En este momento tenemos que una serie de Fourier tiene la forma:
+		$$f(x) = a_0 + \sum_{n=1}^{\infty} a_n \cos(nx) + \sum_{n=1}^{\infty} b_n \sin(nx),$$
+		\pause
+		también tenemos que las funciones trigonométricas las podemos expresar como:
+		$$\cos(x) = \frac{e^{ix} + e^{-ix}}{2} \text{, y que } \sin(x) = \frac{e^{ix} - e^{-ix}}{2i} = \frac{-ie^{ix} + ie^{-ix}}{2},$$
+		\pause
+		Reemplazando esto en la serie original, tenemos 
+		$$ a_0 + \sum_{n=1}^{\infty} a_n \left( \frac{e^{inx} + e^{-inx}}{2} \right) + \sum_{n=1}^{\infty} b_n \left(\frac{-ie^{inx} + ie^{-inx}}{2}\right),$$
+	\end{frame}
+	\begin{frame}
+	\frametitle{Resultados preliminares}
+	\framesubtitle{Serie compleja de Fourier.}
+	Agrupando términos de la serie obtenemos:
+	$$a_0 + \sum_{n=1}^{\infty} \frac{a_n - ib_n}{2} e^{inx} + \sum_{n=1}^{\infty} \frac{a_n + ib_n}{2} e^{-inx},$$
+	Podemos cambiar los índices de las las sumas de $n$ a $-n$, al efectuar este cambio podemos rescribir la expresión anterior en:
+	$$ f(x) = \sum_{n = -\infty}^{\infty} c_n e^{inx},$$
+	donde $c_n = \frac{a_n - ib_n}{2}$, ahora debemos hallar una fórmula para hallar $c_n$, para ello diremos que:
+	$$f(x)e^{-imx} = \sum_{-\infty}^{\infty} c_n e^{inx} e^{-imx},$$
+	\end{frame}
+	\begin{frame}
+	\frametitle{Resultados preliminares}
+	\framesubtitle{Serie compleja de Fourier.}
+	Agrupando términos de la serie obtenemos:
+	$$a_0 + \sum_{n=1}^{\infty} \frac{a_n - ib_n}{2} e^{inx} + \sum_{n=1}^{\infty} \frac{a_n + ib_n}{2} e^{-inx},$$
+	Podemos cambiar los índices de las las sumas de $n$ a $-n$, al efectuar este cambio podemos rescribir la expresión anterior en:
+	$$ f(x) = \sum_{n = -\infty}^{\infty} c_n e^{inx},$$
+	donde $c_n = \frac{a_n - ib_n}{2}$, ahora debemos hallar una fórmula para hallar $c_n$, para ello diremos que:
+	$$f(x)e^{-imx} = \sum_{-\infty}^{\infty} c_n e^{inx} e^{-imx},$$
+	\end{frame}
+	\begin{frame}
+	\framesubtitle{Serie compleja de Fourier.}
+	E integrando entre $-\pi$ y $\pi$:
+	$$\int^{\pi}_{-\pi} f(x)e^{-imx} dx= \sum_{-\infty}^{\infty} c_n \int^{\pi}_{-\pi}e^{inx} e^{-imx} dx = 2\pi c_n,$$
+	luego,
+	$$c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x) e^{-inx} dx$$
+	\end{frame}
+	\begin{frame}
+	\frametitle{Identidad de Parseval}
+	Si $X(t)$ es la serie compleja de Fourier, con período $T_0$, la función cuadrado integrable $P(x)$ satisface:
+	$$P(x) = \sum_{n=-\infty}^{\infty} |c_n|^2$$
+	\textit{Prueba.} 
+	$$X(t) = \sum_{-\infty}^{\infty} c_n e^{inw_0t},$$
+	por lo tanto su conjugada será,
+	$$\bar{X}(t) = \sum_{-\infty}^{\infty} c_n e^{-inw_0t},$$
+	si multiplicamos ambos obtendremos por la propiedad de complejos que:
+	$$X(t)\cdot\bar{X}(t) = |X(t)|^2,$$
+	\end{frame}
+	\begin{frame}
+	\frametitle{Identidad de Parseval}
+	\begin{align*}
+		P(x) &= \frac{1}{T_0} \int_{0}^{T_0} |X(t)|^2 dt\\
+		&= \frac{1}{T_0} \int_{0}^{T_0} X(t)\cdot\bar{X}(t)\\
+		&= \frac{1}{T_0} \int_{0}^{T_0} X(t)\cdot\sum_{n=-\infty}^{\infty} \bar{c}_n e^{-inw_0t} dt\\
+		&= \sum_{n=-\infty}^{\infty} \bar{c}_n \frac{1}{T_0} \int_{0}^{T_0} X(t)\cdot e^{-inw_0t} dt\\
+	\end{align*}
+	nótese que el término $\frac{1}{T_0} \int_{0}^{T_0} X(t)\cdot e^{-inw_0t} dt$ es equivalente a $c_n$, por ende
+	$$ =  \sum_{n=-\infty}^{\infty} \bar{c}_n \cdot c_n = \sum_{n=-\infty}^{\infty} |c_n|^2$$
+	\end{frame}
+\end{document}
