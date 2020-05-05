@@ -1,0 +1,81 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, mexico]{babel}
+
+\title{La Función Beta}
+\author{Miguel Angel Gomez Barrera}
+\institute{Fundación Universitaria Konrad Lorenz}
+\date{2020}
+
+\begin{document}
+	\frame{\titlepage}
+	\begin{frame}
+	\frametitle{Preliminares}
+		La función Beta y la función Gamma son conocidas como las integrales de Euler y se encuentran clasificadas en dos tipos:
+		\begin{itemize}
+			\item Del primer tipo: la función Beta.
+			\item Del segundo tipo:la función Gamma.
+			$$\Gamma(x) = \int_{0}^{\infty} t^{x-1} e^{-t} dt,$$
+			con $x \in \mathbb{C}-\mathbb{Z}^-$, ya hemos visto que esta función contiene la función factorial, de modo que:
+			$$\Gamma(x+1) = (x-1)! = \int_{0}^{\infty} t^{x-1} e^{-t} dt$$
+		\end{itemize}		
+	\end{frame}
+	\begin{frame}
+		\frametitle{La Función Beta.}
+		Conocida también como la integral de primer tipo de Euler, es de gran importancia debido a su conexión con la función gamma y a que muchas integrales complejas pueden ser reducidas a expresiones que involucran a ésta función.
+		\begin{block}{Definición}
+			La función beta, se denota como $B(x,y)$, definida como
+			$$B(x,y) = \int_{0}^{1} t^{x-1}(1-t)^{y-1}dt$$
+		\end{block} 
+	\end{frame}
+	\begin{frame}
+		\frametitle{La Función Beta.}
+		\begin{block}{Propiedad de simetría.}
+			$$B(x,y) = B(y,x).$$
+			\begin{proof}
+				Por la propiedad de convergencia de las integrales definidas tenemos
+				$$\int_{0}^{a} f(t) dt = \int_{0}^{a} f(a-t) dt,$$
+				De modo que rescribiendo la integral de la definición, tenemos
+				$$B(x,y) = \int_{0}^{1} t^{y-1}(1-t)^{x-1} dt,$$
+				vemos por lo tanto que $B(x,y) = B(y,x)$. 
+			\end{proof}
+		\end{block}
+	\end{frame}
+	\begin{frame}
+	\frametitle{La Función Beta.}
+		\begin{block}{Relación con la función Gamma.}
+			Tenemos que
+			$$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)},$$
+			para todos los enteros positivos $x$ y $y$, definimos la función beta como
+			$$B(x,y) = \frac{(x-1)!(y-1)!}{(x+y-1)!}$$
+		\end{block}
+	\end{frame}
+	\begin{frame}
+	\frametitle{La Función Beta.}
+	\begin{block}{Relación con la función Gamma.}
+		\begin{proof}
+			Por la definición de la función gamma
+			$$\Gamma(s) = \int_{0}^{\infty} x^{s-1}e^{-x} dx,$$
+			podemos escribir
+			$$\Gamma(m)\Gamma(n) = \int_{0}^{\infty} x^{m-1}e^{-x} dx \int_{0}^{\infty} y^{n-1}e^{-y} dy,$$
+			y que podemos rescribir como la integral doble
+			$$\Gamma(m)\Gamma(n) = \int_{0}^{\infty}\int_{0}^{\infty} x^{m-1} y^{n-1}e^{-x-y} dx dy,$$ 
+		\end{proof}
+	\end{block}
+	\end{frame}
+	\begin{frame}
+	\frametitle{La Función Beta.}
+	\begin{block}{Relación con la función Gamma.}
+		\begin{proof}
+			$$\Gamma(m)\Gamma(n) = \int_{0}^{\infty}\int_{0}^{\infty} x^{m-1} y^{n-1}e^{-x-y} dy,$$
+			Aplicamos la sustitución $x = vt$ y $y = v(1-t)$, tenemos
+			$$\Gamma(m)\Gamma(n) = \int_{0}^{1} t^{m-1}(1-t)^{n-1} dt \int_{0}^{\infty} v^{m+n-1}e^{-v} dv,$$
+			que es exactamente la definición de la función gamma y la función Beta, luego
+			$$\Gamma(m)\Gamma(n) = B(m,n)\Gamma(m+n)$$
+			y por tanto
+			$$B(m,n) = \frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}$$
+		\end{proof}
+	\end{block}
+	\end{frame}
+\end{document}
