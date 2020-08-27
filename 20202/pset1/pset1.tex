@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsrefs}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+
+\title{Assignment I}
+\author{Miguel Angel Gómez Barrera}
+
+\begin{document}
+	\maketitle
+\paragraph{} From the book from Ivrii develop the following
+\paragraph{1. Problem 1 (even items)}Consider first order equations and determine if they are linear homogeneous, linear inhomogeneous, or nonlinear (u is an unknown function); for nonlinear equations, indicate if they are also semilinear, or quasilinear:
+\begin{gather}
+u_t+xu_x= 0,\\[2pt]
+u_t+uu_x= 0,\\[2pt]
+u_t+xu_x- u=0,\\[2pt]
+u_t+u u_x+x=0,\\[2pt]
+u_t + u_x -u^2=0,\\[2pt]
+u_t^2-u_x^2-1=0,\\[2pt]
+u_x^2+u_y^2-1=0,\\[2pt]
+x u_x + y u_y+ zu_z=0,\\[2pt]
+u_x^2 +  u_y^2+ u_z^2-1=0,\\[2pt]
+u_t + u_x^2+u_y^2=0.
+\end{gather} 
+\paragraph{2. Problem 3} Find the general solutions to the following equations:
+\begin{gather}
+u_{xy}=0,\\[2pt]
+u_{xy}= 2u_x,\\[2pt]
+u_{xy}=e^{x+y},\\[2pt]
+u_{xy}= 2u_x+e^{x+y}.
+\end{gather}
+\textit{Hint}. Introduce $v=u_x$ and find it first.
+\paragraph{3. Problem} Find the general solutions to the following equations: 
+\begin{gather}
+u u_{xy}=u_xu_y,\\[2pt]
+u u_{xy}= 2u_xu_y,\\[2pt]
+u_{xy}=u_x u_y
+\end{gather}
+\textit{Hint}. Divide two first equations by $uux$ and observe that both the right and left-hand expressions are derivative with respect to $y$ of $\ln (u_x)$ and $\ln (u)$ respectively. Divide the last equation by $u_x$.
+\paragraph{4.} Watch the video “The Extraordinary Theorems of John Nash - with Cédric Villani”. From the partial differential equations presented at 33 minute, choose one (different from the heat and wave equations) and write a description of the equation of at least 2 pages, including his mathematical environment, the history of the equation and the state of his solution.
+\newpage
+\section{Solutions}
+\paragraph{1.2.} $u_t+uu_x= 0$, Quasilinear
+\paragraph{1.4.} $u_t+u u_x+x=0$, General nonlinear
+\paragraph{1.6.} $u_t^2-u_x^2-1=0$, General nonlinear
+\paragraph{1.8.} $x u_x + y u_y+ zu_z=0$, Semilinear
+\paragraph{1.10.} $u_t + u_x^2+u_y^2=0$, General nonlinear
+\section{Solutions}
+\paragraph{2.11} $u_{xy}=0$. We assume that $u = u(x,y)$, if $v = u_x$, then $u_{xy} = 0$ becomes $v_y = 0$ which can be solved as an ODE if we integrate with respect of $y$:
+$$v = \int 0 dy  + c_1(x)= c_1(x) = u_x,$$
+same as before, we integrate $u_x$ with respect of $x$,
+$$u = \int c_1(x) dx = C_1(x) + C_2(y),$$
+which indeed is a solution:
+$$u_x = c_1(x)$$
+$$u_{xy} = 0$$
+\paragraph{2.12} $u_{xy}= 2u_x$. We assume that $u = u(x,y)$, if $v = u_x$, then the original equation turns into $v_y = 2v$ which can be solved as an ODE:
+\begin{align*}
+v_y - 2v &= 0,\\
+v &= c_1(x)e^{2y} = u_x. \\[12pt]
+u &= \int c_1(x)e^{2y} dx + C_2(y),\\
+ &= C_1(x)e^{2y} + C_2(y).	
+\end{align*}
+And we can verify the solution:
+$$u_y = 2C_1(x)e^{2y} + K_2(y),$$
+$$u_{yx} = 2c_1(x)e^{2y}.$$
+$$2u_x = 2c_1(x)e^{2y}.$$
+therefore it is a solution.
+\paragraph{2.13} $u_{xy}=e^{x+y}$. We assume that $u = u(x,y)$, if $v = u_x$, then the original equation turns into $v_y = e^{x+y}$ which can be solved as an ODE:
+\begin{align*}
+v &= \int e^{x+y} dy + c_1(x) = e^{x+y} + c_1(x) = u_x. \\[12pt]
+u &= \int (e^{x+y} + c_1(x)) dx + c_2(y),\\
+  &= e^{x+y} + C_1(x) + c_2(y).
+\end{align*}
+Now we check the solution:
+$$u_y = e^{x+y} + c'_2(y),$$
+$$u_{yx} = e^{x+y}.$$
+\paragraph{2.14} $u_{xy}= 2u_x+e^{x+y}$. $u_{xy}=e^{x+y}$. We assume that $u = u(x,y)$, if $v = u_x$, then the original equation turns into $v_y = 2v + e^{x+y}$ which can be solved as an ODE:
+\begin{align*}
+	v_y &= 2v + e^{x+y},\\
+	v_y - 2v &= e^{x + y},\\[6pt]
+	\mu(y) &= e^{\int -2 dy} = e^{-2y},\\[6pt]
+	\frac{d}{dy}\left(e^{-2y}v\right) &= e^{x-y},\\
+	e^{-2y}v &= \int e^{x-y} dy + c_1(x),\\
+	v &= e^{2y}\left(-e^{x-y} + c_1(x)\right),\\
+	  &= -e^{x+y} + c_1(x)e{2y} = u_x.\\[12pt]
+	u &= \int (-e^{x+y} + c_1(x)e^{2y}) dx + c_2(y)\\
+	  &= -e^{x+y} + C_1(x)e^{2y} + c_2(y).
+\end{align*}
+Now we test the solution:
+$$u_y = -e^{x+y} + 2C_1(x)e^2y + C_2(y),$$
+$$u_x = -e^{x+y} + c_1(x)e{2y},$$
+$$u_{yx} = -e^{x+y} + 2c_1(x)e^{2y},$$
+\begin{align*}
+-e^{x+y} + 2c_1(x)e^{2y} &= 2(-e^{x+y} + c_1(x)e{2y}) + e^{x+y},\\
+                         &= -2e^{x+y} + 2c_1(x)e{2y} + e^{x+y},\\
+                         &= -e^{x+y} + 2c_1(x)e{2y}.
+\end{align*}
+Which is indeed a solution.
+\section{Solutions}
+\paragraph{3.15} $u u_{xy}=u_xu_y$, if we follow the hint we get:
+$$\frac{u_{xy}}{u_x} = \frac{u_y}{u}$$
+And we can also  by the hint state that,
+$$\frac{u_{xy}}{u_x} = \frac{\partial}{\partial y}(\ln (u_x)), \frac{u_y}{u} = \frac{\partial}{\partial y}(\ln (u)),$$
+such that,
+\begin{align*}
+\frac{\partial}{\partial y}(\ln (u_x)) &= \frac{\partial}{\partial y}(\ln (u)),\\
+\ln (u_x) &= \ln (u),\\
+u_x &= u,\\
+\frac{u_x}{u} &= 1,\\
+\frac{\partial}{\partial x} (\ln (u)) &= \frac{d}{dx} x,\\
+\ln (u) &= x + c(y),\\
+u &= e^{x + c(y)}.
+\end{align*}
+Now we test the result
+$$u_x = e^{x + c(y)},$$
+$$u_y = c'(y)e^{x + c(y)},$$
+$$u_{xy} = c'(y)e^{x + c(y)},$$
+\begin{align*}
+(e^{x + c(y)})(c'(y)e^{x + c(y)}) &= (e^{x + c(y)})(c'(y)e^{x + c(y)}), 
+\end{align*}
+Which are indeed the equal.
+\paragraph{3.16} $u u_{xy}= 2u_xu_y$. If we follow the hint we get:
+$$\frac{u_{xy}}{u_x} = 2\frac{u_y}{u}.$$
+And we can also  by the hint state that,
+$$\frac{u_{xy}}{u_x} = \frac{\partial}{\partial y}(\ln (u_x)), 2\frac{u_y}{u} = 2\frac{\partial}{\partial y}(\ln (u)),$$
+applying the same argument as in the previous exercise,
+\begin{align*}
+\frac{\partial}{\partial y}(\ln (u_x)) &= 2\frac{\partial}{\partial y}(\ln (u)),\\
+\ln (u_x) &= 2\ln (u),\\
+u_x &= u^2,\\
+\frac{u_x}{u^2} &= 1,\\
+\int \frac{u_x}{u^2} dx &= \int dx + c(y),\\
+- \frac{1}{u} &= x + c(y),\\
+u &= \frac{1}{- x - c(y)}.
+\end{align*}
+Now we test the result,
+$$u_x = \frac{1}{(-x-c(y))^2}.$$
+$$u_{xy} = \frac{2c'(y)}{(-x-c(y))^3}.$$
+$$u_y = \frac{c'(y)}{(-x-c(y))^2}.$$
+\begin{align*}
+	\left(\frac{1}{- x - c(y)}\right) \left(\frac{2c'(y)}{(-x-c(y))^3}\right) &= 2\left(\frac{1}{(-x-c(y))^2}\right) \left(\frac{c'(y)}{(-x-c(y))^2}\right)\\
+	\frac{2c'(y)}{(-x-c(y))^4} &= \frac{2c'(y)}{(-x-c(y))^4}.
+\end{align*}
+\paragraph{3.17} $u_{xy}=u_x u_y$ If we follow the hint we get:
+$$\frac{u_{xy}}{u_x} = u_y,$$
+notice that
+$$\frac{u_{xy}}{u_x} = \frac{\partial}{\partial y}\left(\ln (u_x)\right),$$
+then we can reorganize the initial PDE as:
+$$\frac{\partial}{\partial y}\left(\ln (u_x)\right) = \frac{\partial}{\partial y} u$$
+\begin{align*}
+\ln (u_x) &= u,\\
+\frac{\ln (u_x)}{u} = 1 	
+\end{align*}
+\newpage
+\section{La ecuación de Navier Stokes}
+\paragraph{}Desde la antigüedad, los seres humanos hemos sentido la necesidad de poder entender los fenómenos de la naturaleza, como el movimiento de una flecha en el aire, o el movimiento de los astros, o el movimiento de la materia en una escala molecular, luego hablamos de fenómenos que ocurren en una escala muy baja y de otros que ocurren en una escala mucho mas alta, la física de fluídos nace justo en el medio, veamos el porqué,
+$$x= x_0 + vt + \frac{1}{2}at^2,$$
+\paragraph{}este es  uno de los primeros modelos que se aprenden en las primeras clases de un curso de física mecánica, en particular, describe la pocisión de un objeto en una dimesión a través del tiempo, sin mayor detalle, este modelo utiliza la velocidad, la pocisión inicial, la aceleración y el tiempo transcurrido, para determinar la nueva pocisión, peor un análisis un poco detallado nos muestra que estas propiedades necesarias para el modelo, no corresponden a propiedades intrínsecas (como la masa, la temperatura, entre otros), en otras palabras modelan un mismo objeto, porque para éste modelo todos los objetos se comportan igual, sin embargo si hablamos de fluídos, vemos que hay fluídos que fluyen "más fácil" que otros, como la miel y el agua, es por ello que este modelo es insuficiente.
+\paragraph{}Con la aparición de nuevas teorías, y herramientas para permitir inferir las propiedades de los fluídos y la materia en general; nace una física especial para los fluídos, la gran diferencia sin ir mas lejos, consiste que en esta física se tienen en cuenta propiedades e interacciones que ocurren a escala atómica para predecir el comportamiento de un fluído, sin embargo funcionan hasta cierto punto y justo en el borde se encuentran las ecuaciones de Navier-Stokes.
+
+$$\frac{\partial}{\partial t} u_i +  \sum_{j=1}^{n} u_j \frac{\partial u_i}{\partial x_j} = \nu \Delta u_i - \frac{\partial p}{\partial x_i} + f_i(x,t),$$
+$$ \div u = \sum_{i=1}^{n} \frac{\partial u_i}{\partial x_i} = 0,$$
+
+\paragraph{} Uno de los problemas del milenio, las ecuaciones de Navier Stokes se remontan a casi dos siglos, llevan su nombre en honor a Claude-Louis Navier(1785-1836) un ingeníero mecánico y a George Gabriel Stokes(1819-1903) un físico y matemático, estas ecuaciones describen el movimiento de un fluido viscozo e incompresible que fluye bajo la acción una función de vectores de velocidad, el mejor ejemplo sería imaginarse una caja llena de agua, en donde se empiezan a batir de un lado a otro y en diferentes lugares el fluído, el modelo que se acerca mas la naturaleza son aquellas ecuaciones\footnote{La descripción original del problema del mileniio se encuentra en \url{http://www.claymath.org/sites/default/files/navierstokes.pdf}.}
+, continuando con su descripción tenemos que sus condiciones iniciales son
+$$u(x,0) = u^{\circ}(x)$$
+tal que $x \in \mathbb{R}^n, t \geq 0$ y $n = 2$ ó $3$. La ecuación puede describir el movimiento de un fluído en las $n$ dimensiones, bajo una función desconocida de vectores de velocidad $u(x,t) = (u_i(x,t))_{1 \leq i \leq n} \in \mathbb{R}^n$ y presión $p(x,t) \in \mathbb{R}$ definido para la posición $x \in \mathbb{R^n}$ y $\nu$ corresponde a la viscosidad.
+
+\paragraph{} Mediante su uso es posible simular en un computador el comportamiento de un fluído y es así como ha sido posible también constatar su efectividad en modelar el comportamiento, es muy seguro que para su solución se requieran de nuevas matemáticas, su solución nos abrirá una ventana más al entendimiento de como funciona una parte de la naturaleza.
+\end{document}

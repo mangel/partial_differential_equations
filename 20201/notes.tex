@@ -1,0 +1,20 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[margin=0.5in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{remark}{Remark}
+
+\begin{document}
+\section{Ordinary Differential Equations}
+
+\begin{theorem}[Existence and Uniqueness]
+	Let $R$ be a region on the plane $xy$ defined as $a \leq x \leq b$, $c \leq y \leq d$ which contains a point $(x_0, y_0)$ inside. If $f(x,y)$ and $ \frac{df}{dy}$ are continuous on $R$, then, exists some interval $I_0 : (x_0 - h, x_0 + h)$, $h > 0$ contained on $[a,b]$ and a unique function $y(x)$, defined on $I_0$ that is a solution to the Cauchy problem(Initial value problem).
+\end{theorem}
+\end{document}
