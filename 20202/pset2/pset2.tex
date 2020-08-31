@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsrefs}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+
+\title{Assignment 2}
+\author{Miguel Angel Gómez Barrera}
+
+\begin{document}
+	\maketitle
+\paragraph{1} Reproduce in full detail from section 2.3 general solution y Cauchy problem. 
+\paragraph{2} Reproduce in full detail section 2.4.
+\paragraph{3} Reproduce in full detail section 2.5
+\paragraph{} In full detail means that you must add any detail missing by the author. Moreover, you can rewrite this topics in the way you consider, it doesn’t have to be like the author says. Feel free to put pictures at your convinience and use additional bibliography if you want.
+
+\section{Homogeneous $1D$ Wave equation}
+\paragraph{}Consider the equation
+\begin{equation}
+u_{tt} - c^2u_{xx} = 0\label{eq:1}
+\end{equation}
+\paragraph{} Let us rewrite formally equation (\ref{eq:1}) as
+\begin{equation}
+(\partial^2_t - c^2 \partial^2_x)u = (\partial_t - c\partial_x) (\partial_t - c\partial_x)\label{eq:2}
+\end{equation}
+\paragraph{}On the previous equation we are in a way factoring out a differential operator from the initial equation, and repeating the same process but treating them instead as a squared difference.
+\paragraph{}Denoting  $v = (\partial_t + c\partial_x)u = u_t + cu_x$ and $w = (\partial_t - c\partial_x) = u_t - cu_x$, this essentially the inverse procedure that we did in the beginning, and therefore it is a representation of the first equation, then we can formulate this new system of PDEs
+\begin{equation}
+v_t - cv_x = 0,\label{eq:3}
+\end{equation}
+\begin{equation}
+w_t + cw_x = 0.\label{eq:4}
+\end{equation}
+\paragraph{}The same representation of the original PDE but one degree less. From Section 2.1 we know how to solve these equations
+\begin{equation}
+v = 2c\phi'(x + ct)\label{eq:5},
+\end{equation}
+\begin{equation}
+w = -2c\psi'(x - ct)\label{eq:6},
+\end{equation}
+\paragraph{}By using the method of constant coefficients we will solve for $v$, we take original PDE:
+$$v_t - c v_x = 0,$$
+\paragraph{}and propose a solution function\footnote{I'm not sure if this is correct, why a derivative?}:
+$$v = \frac{1}{2c}\phi_1'\left(t + \frac{x}{c}\right),$$
+\paragraph{}which would be our general solution, but in this case the author solves the equation introducing an initial condition $w|_{t=0} = 2c\phi'(x)$, then  $\frac{1}{2c}\phi_1'(\frac{x}{c}) = 2c\phi'(x)$ and then $\frac{1}{2c}\phi_1'(x) = 2c\phi'(cx)$, and as the author solves it in the mentioned section, we plug $w$ and arrive at
+$$v = 2c\phi'(x + ct),$$
+\paragraph{} by repeating the  previous step with $w$ we obtain equation (\ref{eq:6}).
+\paragraph{}$\phi'$ and $\psi'$ are arbitrary functions. We find convenient to have factors $2c$ and $-2c$ and to denote by $\phi$ and $\psi$ their primitives (aka indefinite integrals). Recalling definitions of $v$ and $w$ we have
+\begin{align*}
+&u_t+cu_x=2c\phi'(x+ct),\\
+&u_t-cu_x=-2c\psi'(x-ct).
+\end{align*}
+\paragraph{}Observe that the right-hand side of (\ref{eq:5}) equals to\footnote{I'm not sure but this result seems to assume that $\phi_t = \phi_x$} $(\partial_t + c\partial_x)\phi(x + ct)$, and therefore $(\partial_t +c\partial_x)(u-\phi(x+ct))=0$. To check the previous result we need to recall the initial definition of $v = u_t + cu_x$, which by now we know is $2c\phi'(x+ct)$, combining our assumption from equation (\ref{eq:5}), and the initial definition (the factorization of the differential operator), we obtain
+\begin{align*}
+	u_t + cu_x &= 2c\phi'(x + ct),\\
+	u_t + cu_x - 2c\phi'(x + ct) &= 0,\\
+	(\partial_t + c\partial_x)u - (\partial_t + c\partial_x)\phi(x + ct) &= 0,\\
+	(\partial_t + c\partial_x)(u-\phi(x + ct)) &= 0.
+\end{align*}
+\paragraph{}Then $u-\phi(x+ct)$ must be a function of\footnote{I don't see how.} $x-ct: u-\phi(x+ct)=\chi(x-ct)$ and plugging into (\ref{eq:6}) we conclude that\footnote{I really don't see how he get to this result.} $\chi=\psi$ (up to a constant, but both $\phi$ and $\psi$ are defined up to some constants).
+\paragraph{}Therefore\footnote{Also, I don't see how by plugging the previous result we obtain the general solution.}
+\begin{equation}
+	u = \phi(x + ct) + \psi(x - ct)\label{eq:7}
+\end{equation}
+\paragraph{} is a general solution of (\ref{eq:1}). This solution is the superposition of two waves $u_1 = \phi(x + ct)$ and $u_2 = \psi(x - ct)$ running to the left and to the right with the speed $c$. So $c$ is a propagation speed. 
+\end{document}
