@@ -44,7 +44,7 @@ w = -2c\psi'(x - ct)\label{eq:6},
 \end{equation}
 \paragraph{}By using the method of constant coefficients we will solve for $v$, we take original PDE:
 $$v_t - c v_x = 0,$$
-\paragraph{}and propose a solution function\footnote{I'm not sure if this is correct, why a derivative?}:
+\paragraph{}and propose a solution function:
 $$v = \frac{1}{2c}\phi_1'\left(t + \frac{x}{c}\right),$$
 \paragraph{}which would be our general solution, but in this case the author solves the equation introducing an initial condition $w|_{t=0} = 2c\phi'(x)$, then  $\frac{1}{2c}\phi_1'(\frac{x}{c}) = 2c\phi'(x)$ and then $\frac{1}{2c}\phi_1'(x) = 2c\phi'(cx)$, and as the author solves it in the mentioned section, we plug $w$ and arrive at
 $$v = 2c\phi'(x + ct),$$
@@ -54,17 +54,25 @@ $$v = 2c\phi'(x + ct),$$
 &u_t+cu_x=2c\phi'(x+ct),\\
 &u_t-cu_x=-2c\psi'(x-ct).
 \end{align*}
-\paragraph{}Observe that the right-hand side of (\ref{eq:5}) equals to\footnote{I'm not sure but this result seems to assume that $\phi_t = \phi_x$} $(\partial_t + c\partial_x)\phi(x + ct)$, and therefore $(\partial_t +c\partial_x)(u-\phi(x+ct))=0$. To check the previous result we need to recall the initial definition of $v = u_t + cu_x$, which by now we know is $2c\phi'(x+ct)$, combining our assumption from equation (\ref{eq:5}), and the initial definition (the factorization of the differential operator), we obtain
+\paragraph{}Observe that the right-hand side of (\ref{eq:5}) equals to $(\partial_t + c\partial_x)\phi(x + ct)$, which is derived for the definition from $v$\footnote{Remember that $v= (\partial_t + c\partial_x)u$} and therefore $(\partial_t +c\partial_x)(u-\phi(x+ct))=0$. To check the previous result we need to recall the initial definition of $v = u_t + cu_x$, which by now we know is $2c\phi'(x+ct)$, combining our assumption from equation (\ref{eq:5}), and the initial definition (the factorization of the differential operator), we obtain
 \begin{align*}
 	u_t + cu_x &= 2c\phi'(x + ct),\\
 	u_t + cu_x - 2c\phi'(x + ct) &= 0,\\
 	(\partial_t + c\partial_x)u - (\partial_t + c\partial_x)\phi(x + ct) &= 0,\\
 	(\partial_t + c\partial_x)(u-\phi(x + ct)) &= 0.
 \end{align*}
-\paragraph{}Then $u-\phi(x+ct)$ must be a function of\footnote{I don't see how.} $x-ct: u-\phi(x+ct)=\chi(x-ct)$ and plugging into (\ref{eq:6}) we conclude that\footnote{I really don't see how he get to this result.} $\chi=\psi$ (up to a constant, but both $\phi$ and $\psi$ are defined up to some constants).
-\paragraph{}Therefore\footnote{Also, I don't see how by plugging the previous result we obtain the general solution.}
+\paragraph{}Then $u-\phi(x+ct)$ must be a function of $x-ct: u-\phi(x+ct)=\chi(x-ct)$, notice that this PDE is originally modeling the superposition of two waves, the term $\phi(x + ct)$ represents a wave in some direction, it is expected that the other term would be some other wave on the opposite direction. Plugging the previous result into (\ref{eq:6}) we conclude that\footnote{I really don't see how he get to this result.} $\chi=\psi$ (up to a constant, but both $\phi$ and $\psi$ are defined up to some constants).
+\paragraph{}Therefore
 \begin{equation}
 	u = \phi(x + ct) + \psi(x - ct)\label{eq:7}
 \end{equation}
-\paragraph{} is a general solution of (\ref{eq:1}). This solution is the superposition of two waves $u_1 = \phi(x + ct)$ and $u_2 = \psi(x - ct)$ running to the left and to the right with the speed $c$. So $c$ is a propagation speed. 
+\paragraph{} is a general solution of (\ref{eq:1}). This solution is the superposition of two waves $u_1 = \phi(x + ct)$ and $u_2 = \psi(x - ct)$ running to the left and to the right with the speed $c$. So $c$ is a propagation speed.
+
+\newpage
+\paragraph{}Then $u-\phi(x+ct)$ must be a function of $x-ct: u-\phi(x+ct)=\chi(x-ct)$. \underline{Plugging the previous result into (\ref{eq:6}) we conclude that $\chi=\psi$} (up to a constant, but both $\phi$ and $\psi$ are defined up to some constants).
+
+\paragraph{} esto es lo que tengo, para la primera parte,
+$$v = 2x\phi'(x + ct) = (\partial_t + c \partial_x)u,$$
+\paragraph{}pero $v = (\partial_t + c\partial_x)u$ y por ende $2c\phi'(x + ct) = (\partial_t + c\partial_x)\phi(x +ct)$, pero como $v = (\partial_t + c \partial_x)u = (\partial_t + c\partial_x)\phi(x +ct)$, entonces $v = (\partial_t + c\partial_x)(u - \phi(x + ct)) = 0$, por lo que ya me aclaro el profe hoy, se entiende que  $u - \phi(x + ct)$ es una función de $x - ct$, $\chi(x - ct) = u - \phi(x + ct)$, pero para la segunda parte, no logré llegar a que $\psi = \chi$, esto es lo que he hecho. El autor sugiere reemplazar el resultado anterior en $w = -2c\psi'(x - ct)$ el único camino que ví es despejar en ´
+
 \end{document}
