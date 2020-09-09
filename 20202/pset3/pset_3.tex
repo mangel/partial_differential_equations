@@ -1,0 +1,131 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsrefs}
+
+\title{Assignment 3}
+\author{Miguel Angel Gómez Barrera}
+
+\begin{document}
+	\maketitle
+\paragraph{1.} apply separation of variables to find the solution of the heat distribuiton through a solid block.
+\begin{align*}
+	u_t &= c^2 \nabla^2 u\\
+	u(0,y,z,t) &= k_1\\
+	u(a,y,z,t) &= k_2\\
+	u(x,0,z,t) &= k_3\\
+	u(x,b,z,t) &= k_4\\
+	u(x,y,0,t) &= k_5\\
+	u(x,y,c,t) &= k_6\\
+	u(x,y,c,0) &= f(x)\\
+\end{align*}
+\paragraph{} where $0 < x < a$, $0 < y < b$ y $0 < z < c$.
+\paragraph{2.} Apply separation of variables to solve the one dimensional wave equation, for finite vibrating string with fixed ends, i.e.,
+\begin{align*}
+	u_{tt} &= c^2u_{xx}\\
+	u(0,t) &= 0\\
+	u(l, t) &= 0\\
+	u(x, 0) &= \phi (x)\\
+	u_t(x,0) &= \psi (x)
+\end{align*}
+\paragraph{} where $0 < x < l$, $t > 0$ and $\phi(x)$, $\psi(x)$ well defined for $x \in (0, l)$. Explain in full detail every step in your process.
+\paragraph{3.} Prove that:
+\paragraph{}$$\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \sin \left(\frac{n\pi}{L} x\right) dx = L\delta_{nm},$$
+$$\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \sin \left(\frac{n\pi}{L} x\right) dx = L\delta_{nm},$$
+$$\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \cos \left(\frac{n\pi}{L} x\right) dx = 0$$
+
+\paragraph{}We will start one by one.
+
+\paragraph{Proof of the first integral.} We have to prove two cases: when $n \neq m$ and when $n = m$, also notice that from now on we will assume that $n , m \in \mathbb{Z}$. We will start with the first case, by using the trigonometric identity $\sin(u) \sin(v) = \frac{1}{2}\left[ \cos(u - v) - \cos (u + v)\right]$ on the initial integral we obtain:
+\begin{align*}
+\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \sin \left(\frac{n\pi}{L} x\right) dx = \int_{-L}^{L} \frac{1}{2} \left[ \cos\left(\frac{\pi x}{L} (m - n)\right) - \cos\left(\frac{\pi x}{L} (m + n)\right)\right],
+\end{align*}
+\paragraph{}Which is easier to solve,
+$$\int_{-L}^{L} \frac{1}{2} \left[ \cos\left(\frac{\pi x}{L} (m - n)\right) - \cos\left(\frac{\pi x}{L} (m + n)\right)\right],$$
+\begin{align*}
+ &= \frac{1}{2} \left[ \frac{L}{\pi (m - n)} \sin\left(\frac{\pi x}{L} (m - n)\right) - \frac{L}{\pi (m + n)} \sin\left(\frac{\pi x}{L} (m + n)\right)\right]_{-L}^{L}\\
+&= \frac{1}{2}\left[ \frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) - \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right) -
+\frac{L}{\pi (m - n)} \sin\left(-\pi (m - n)\right) + \frac{L}{-\pi (m + n)} \sin\left(-\pi(m + n)\right)
+ \right]\\
+&= \frac{1}{2}\left[ \frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) - \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right) +
+\frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) - \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right)
+\right]\\
+&= \frac{1}{2} \left[ \frac{2L}{\pi(m-n)} \sin (\pi (m - n)) - \frac{2L}{\pi(m + n)} \sin (\pi(m + n)) \right]\\
+&= \frac{L}{\pi(m-n)} \sin (\pi (m - n)) - \frac{L}{\pi(m + n)} \sin (\pi (m + n)),
+\end{align*}
+\paragraph{}notice than $m + n$ or $m - n$ gives us some $z$ integer and such that $\sin (z\pi) = 0$, therefore when $n \neq m$ the integral is always zero. Now we solve for the case when $n = m$, if that is the case notice that the initial integral can be rewritten as:
+$$\int_{-L}^{L} \sin^2 \left( \frac{n\pi}{L} x \right) dx,$$
+\paragraph{} by using the trigonometric indentity $\sin^2(u) = \frac{1 - \cos(2u)}{2}$ we obtain
+$$\int_{-L}^{L} \frac{1}{2} \left[ 1 - \cos \left(\frac{2n\pi}{L} x \right) \right],$$
+\paragraph{} Which again is an easier integral to solve
+\begin{align*}
+&= \frac{1}{2} \left[ x - \frac{L}{2n\pi} \sin \left(\frac{2n\pi}{L} x\right) \right]_{-L}^{L}\\
+&= \frac{1}{2} \left[ L - \frac{L}{2n\pi} \sin (2n\pi) + L + \frac{L}{2n\pi} \sin (-2n\pi) \right]\\
+&= \frac{1}{2} \left[ 2L - \frac{L}{2n\pi} \sin (2n\pi) - \frac{L}{2n\pi} \sin (2n\pi) \right]\\
+&= \frac{1}{2} \left[ 2L - \frac{L}{n\pi} \sin (2n\pi) \right]\\
+&= L - \frac{L}{2n\pi} \sin (2n\pi),
+\end{align*}
+\paragraph{} but same as before for any integer $z$ $\sin (z\pi) = 0$, and therefore when $n = m$ , then
+$$\int_{-L}^{L} \frac{1}{2} \left[ 1 - \cos \left(\frac{2n\pi}{L} x \right) \right] = L.$$
+\paragraph{} and by the two previous results we have verified that
+$$\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \sin \left(\frac{n\pi}{L} x\right) dx = L\delta_{nm}$$
+\paragraph{Proof of the second integral.}
+$$\int_{-L}^{L} \cos \left(\frac{m\pi}{L} x\right) \cos \left(\frac{n\pi}{L} x\right) dx = L\delta_{nm}$$
+\paragraph{} we will repeat the same procedure as on the first proof,  with this in mind for the first case $m \neq n$ we will rewrite the integral as
+\begin{align*}
+\int_{-L}^{L} \cos \left(\frac{m\pi}{L} x\right) \cos \left(\frac{n\pi}{L} x\right) dx = \int_{-L}^{L} \frac{1}{2} \left[ \cos\left(\frac{\pi x}{L} (m - n)\right) + \cos\left(\frac{\pi x}{L} (m + n)\right)\right],
+\end{align*}
+\paragraph{} by using the trigonometric identity $\cos(u) \cos(v) = \frac{1}{2}\left[ \cos(u - v) + \cos (u + v)\right]$ on the initial integral.
+\paragraph{}Which can be solved almost the same means we use on the previous one, but here we will repeat the solving procedure,
+$$\int_{-L}^{L} \frac{1}{2} \left[ \cos\left(\frac{\pi x}{L} (m - n)\right) + \cos\left(\frac{\pi x}{L} (m + n)\right)\right],$$
+\begin{align*}
+&= \frac{1}{2} \left[ \frac{L}{\pi (m - n)} \sin\left(\frac{\pi x}{L} (m - n)\right) + \frac{L}{\pi (m + n)} \sin\left(\frac{\pi x}{L} (m + n)\right)\right]_{-L}^{L}\\
+&= \frac{1}{2}\left[ \frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) + \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right) -
+\frac{L}{\pi (m - n)} \sin\left(-\pi (m - n)\right) - \frac{L}{-\pi (m + n)} \sin\left(-\pi(m + n)\right)
+\right]\\
+&= \frac{1}{2}\left[ \frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) + \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right) +
+\frac{L}{\pi (m - n)} \sin\left(\pi (m - n)\right) + \frac{L}{\pi (m + n)} \sin\left(\pi(m + n)\right)
+\right]\\
+&= \frac{1}{2} \left[ \frac{2L}{\pi(m-n)} \sin (\pi (m - n)) + \frac{2L}{\pi(m + n)} \sin (\pi(m + n)) \right]\\
+&= \frac{L}{\pi(m-n)} \sin (\pi (m - n)) + \frac{L}{\pi(m + n)} \sin (\pi (m + n)),
+\end{align*}
+\paragraph{}notice than $m + n$ or $m - n$ gives us some $z$ integer and such that $\sin (z\pi) = 0$, therefore when $n \neq m$ the integral is always zero. Now we solve for the case when $n = m$, if that is the case notice that the initial integral can be rewritten as:
+$$\int_{-L}^{L} \cos^2 \left( \frac{n\pi}{L} x \right) dx,$$
+\paragraph{} by using the trigonometric indentity $\cos^2(u) = \frac{1 + \cos(2u)}{2}$ we obtain
+$$\int_{-L}^{L} \frac{1}{2} \left[ 1 + \cos \left(\frac{2n\pi}{L} x \right) \right],$$
+\paragraph{} Which again is an easier integral to solve
+\begin{align*}
+&= \frac{1}{2} \left[ x + \frac{L}{2n\pi} \sin \left(\frac{2n\pi}{L} x\right) \right]_{-L}^{L}\\
+&= \frac{1}{2} \left[ L + \frac{L}{2n\pi} \sin (2n\pi) + L - \frac{L}{2n\pi} \sin (-2n\pi) \right]\\
+&= \frac{1}{2} \left[ 2L - \frac{L}{2n\pi} \sin (2n\pi) + \frac{L}{2n\pi} \sin (2n\pi) \right]\\
+&= \frac{1}{2} \left[ 2L - \frac{2L}{n\pi} \sin (2n\pi) \right]\\
+&= L - \frac{L}{n\pi} \sin (2n\pi),
+\end{align*}
+\paragraph{} but same as before for any integer $z$ $\sin (z\pi) = 0$, and therefore when $n = m$ , then
+$$\int_{-L}^{L} \frac{1}{2} \left[ 1 + \cos \left(\frac{2n\pi}{L} x \right) \right] = L.$$
+\paragraph{} and by the two previous results we have verified that
+$$\int_{-L}^{L} \cos \left(\frac{m\pi}{L} x\right) \cos \left(\frac{n\pi}{L} x\right) dx = L\delta_{nm}$$
+\paragraph{Proof of the third integral.}
+$$\int_{-L}^{L} \sin \left(\frac{m\pi}{L} x\right) \cos \left(\frac{n\pi}{L} x\right) dx = 0$$
+\paragraph{}We will start by assuming that $n \neq m$, and therefore by using the trigonometric identity $\sin (u) \cos (v) = \frac{1}{2} \left[\sin(u + v) + \sin (u - v) \right]$ we rewrite the integral as
+$$\int_{-L}^{L} \frac{1}{2} \left[ \sin\left(\frac{\pi x}{L} (m + n)\right) + \sin\left(\frac{\pi x}{L} (m - n)\right) \right],$$
+\paragraph{}Now we solve the integral,
+\begin{align*}
+&= \frac{1}{2} \left[-\frac{L}{\pi (m + n)} \cos \left(\frac{\pi x}{L} (m + n) \right) - \frac{L}{\pi (m - n)}\cos \left(\frac{\pi x}{L} (m - n)\right)\right]_{-L}^{L}\\
+&= \frac{1}{2} \left[-\frac{L}{\pi (m + n)} \cos \left(\pi (m + n) \right) - \frac{L}{\pi (m - n)}\cos \left(\pi(m - n)\right) + \frac{L}{\pi (m + n)} \cos \left(-\pi (m + n) \right) + \frac{L}{\pi (m - n)}\cos \left(-\pi(m - n)\right)\right]\\
+&= \frac{1}{2} \left[-\frac{L}{\pi (m + n)} \cos \left(\pi (m + n) \right) - \frac{L}{\pi (m - n)}\cos \left(\pi(m - n)\right) + \frac{L}{\pi (m + n)} \cos \left(\pi (m + n) \right) + \frac{L}{\pi (m - n)}\cos \left(\pi(m - n)\right)\right]\\
+&= \frac{1}{2}\left[0\right]\\
+&= 0
+\end{align*}
+\paragraph{} as we saw assuming that $n \neq m$ we obtain zero, now we evaluate as $n = m$, then the initial integral becomes 
+$$\int_{-L}^{L} \sin \left(\frac{n\pi}{L} x\right) \cos \left(\frac{n \pi}{L} x\right) dx,$$
+\paragraph{}now we solve the integral, notice that we can perform the substitution $u = \sin \left(\frac{n\pi}{L} x\right)$, then $\frac{du}{dx} = \frac{L}{n\pi}\cos\left(\frac{n\pi}{L} x\right)$, we obtain
+$$\int_{-L}^{L} \sin \left(\frac{n\pi}{L} x\right) \cos \left(\frac{n \pi}{L} x\right) dx = \int_{?}^{?}\frac{L}{n\pi}  u du = \left[\frac{L}{2n\pi} u^2\right]_{-?}^{?} = \left[\frac{L}{2n\pi} \sin^2 \left(\frac{n\pi}{L} x\right)\right]_{-L}^{L} = \frac{L}{n\pi} \sin \left(n\pi\right) = 0,$$
+\paragraph{} $\sin (n\pi) = 0$, therefore we prove that
+$$\int_{-L}^{L} \sin \left(\frac{n\pi}{L} x\right) \cos \left(\frac{n \pi}{L} x\right) dx = 0,$$
+\paragraph{} no matter if $n = m$ or $m \neq n$, and that concludes our proof.
+\end{document}
