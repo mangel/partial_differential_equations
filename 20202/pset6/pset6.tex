@@ -1,0 +1,559 @@
+\documentclass{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath}
+%\usepackage{amsrefs}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage[spanish, mexico]{babel}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+
+\title{Assignment VI: Partial Differential Equations.}
+\author{Leidy Catherine Sánchez, Miguel Angel Gómez}
+\begin{document}
+	\maketitle
+\paragraph{1.}Reproduce in full detail the problem solved in the video 'Ultra-mega differential Equations Review Problem!!!' (https://www.youtube.com/watch?v=yncPeXiRdck).
+\paragraph{Solución.} Resolver
+\begin{equation}
+(1-x^2)y'' - 8xy' - 12y = 0,\label{eq:1_initial}
+\end{equation}
+\paragraph{} en $(-1,1)$.
+
+\paragraph{Series de potencias.} Identificamos $P(x), Q(x)$ al reescribir la ecuación inicial:
+\begin{equation}
+y'' - \frac{8x}{(1-x^2)} - \frac{12y}{(1-x^2)} = 0\label{eq:std_form},
+\end{equation}
+\paragraph{}Encontramos singularidades en $x_0 =-1, x_0 = 1$, ahora probamos si los puntos son singulares y regulares, como sigue
+$$
+(x-x_0) P(x) = -\frac{x(x-x_0)}{(1-x^2)},\hspace{0.1in} (x - x_0)^2 Q(x) = -\frac{12(x-x_0)^2}{(1-x^2)},
+$$
+\begin{align*}
+\frac{x(x - x_0)}{(1 - x^2)} &= \frac{x (x - x_0)}{x^2 - 1},\\
+&= \frac{x(x- x_0)}{(x-1)(x+1)}
+\end{align*}
+\begin{align*}
+-\frac{12(x-x_0)^2}{(1-x^2)} &= \frac{12(x-x_0)^2}{(x^2- 1)},\\
+&= \frac{12(x-x_0)^2}{(x-1)(x+1)}
+\end{align*}
+\paragraph{}Ahora verificamos en $x_0 = -1$, $x_0 = 1$ En ambas funciones. En $x_0 = -1$, obtenemos
+$$\frac{x(x + 1)}{(x + 1)(x - 1)} = \frac{x}{x-1},$$
+$$\frac{12(x+1)^2}{(x-1)(x+1)} = \frac{12(x+1)}{(x-1)},$$
+\paragraph{} Ambas analíticas por ende $x_0 = -1$ es singular regular. Ahora en $x_0 = 1$,
+$$\frac{x(x - 1)}{(x + 1)(x - 1)} = \frac{x}{x+1},$$
+$$\frac{12(x-1)^2}{(x-1)(x+1)} = \frac{12(x-1)}{(x+1)},$$
+\paragraph{} $x_0 = 1$ es singular regular.
+\newpage
+\paragraph{} ahora supones que la solución de (\ref{eq:1_initial}) tiene la forma de una serie de potencias,
+\begin{equation}
+y = \sum_{n=0}^{\infty} a_n x^n,\label{eq:2_expect}
+\end{equation}
+\paragraph{} y sus correspondientes derivadas,
+\begin{equation}
+y' = \sum_{n=0}^{\infty} na_n x^{n-1} \label{eq:3_expect},
+\end{equation}
+\begin{equation}
+y'' = \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} \label{eq:4_expect},
+\end{equation}
+\paragraph{}Sustituímos \eqref{eq:2_expect}, \eqref{eq:3_expect}, \eqref{eq:4_expect} en \eqref{eq:1_initial} y desarrollamos cada producto, obtenemos
+\begin{align*}
+0 &= (1-x^2)y'' - 8x - 12y,\\
+&= (1-x^2) \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} - 8x\sum_{n=0}^{\infty} na_n x^{n-1} - 12 \sum_{n=0}^{\infty} a_n x^n,\\
+&= \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} - \sum_{n=0}^{\infty} n(n-1)a_n x^n - 8\sum_{n=0}^{\infty} na_n x^n - 12 \sum_{n=0}^{\infty} a_n x^n,\\
+&= \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} - \sum_{n=0}^{\infty} n(n-1)a_n x^n - \sum_{n=0}^{\infty} (8n+12)a_nx^n,\\
+&= \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} - \sum_{n=0}^{\infty} (n(n-1) + 8n + 12)a_nx^n,
+\end{align*}
+\paragraph{} al final, queremos unir todos los terminos dentre de una gran serie. Tenemos que reescribir los indices de algunas sumatorias, en particular la primera sumatoria, necesitamos factorizar el factor $x$ pero en la primera sumatoria, la potencia es $n-2$, entonces movemos la  sumatoria a $n=2$, pero nótese que los dos primeros términos son cero
+$$0(0-1)a_0x^{-2} + 1(1-1)a_1x^{-1} + \sum_{n=2}^{\infty} n(n-1)a_nx^n = \sum_{n=0}^{\infty} (n+2)(n+1)a_{n+2}x^n,$$
+\paragraph{}Hemos reindexado los coeficientes $a_n$, mediante la sustitución  $n = n+2$, ahora retomando la serie anterior y sustituyendo este resultado
+\begin{align*}
+0 &= \sum_{n=0}^{\infty} n(n-1)a_n x^{n-2} - \sum_{n=0}^{\infty} (n(n-1) + 8n + 12)a_nx^n,\\
+&= \sum_{n=0}^{\infty} (n+2)(n+1)a_{n+2} x^n - \sum_{n=0}^{\infty} (n^2 + 7n + 12)a_nx^n,\\
+&= \sum_{n=0}^{\infty} (n+2)(n+1)a_{n+2} x^n - \sum_{n=0}^{\infty} (n+3)(n+4)a_nx^n,\\
+&= \sum_{n=0}^{\infty} \left((n+2)(n+1)a_{n+2} - (n+3)(n+4)a_n\right)x^n.
+\end{align*}
+\paragraph{} Que sabemos es igual a cero, por ende
+$$(n+2)(n+1)a_{n+2} - (n+3)(n+4)a_n = 0,$$
+\paragraph{}lo que nos lleva a la fórmula recursiva,
+\begin{equation}
+a_{n+2} = \frac{(n+3)(n+4)}{(n+2)(n+1)} a_n \label{eq:5_recursion},
+\end{equation}
+\paragraph{} Ésta fórmula implica que $a_0$ y $a_1$ son constantes libres. Ahora nos concentraremos en los términos pares, por ello asignaremos a estas constantes los valores $a_0 = 1, a_1=0$, sin embargo a consecuencia de ello, todos los $a_{2k+1}$ serán iguales a cero,
+$$a_3 = \frac{(1+3)(1+4)}{(1+2)(1+1)} a_1 = \frac{(1+3)(1+4)}{(1+2)(1+1)} 0 = 0,$$
+$$a_5 = \frac{(2+3)(2+4)}{(2+2)(2+1)} a_3 = \frac{(2+3)(2+4)}{(2+2)(2+1)} 0 = 0,$$
+\paragraph{}es por ello que únicamente serán de interés los términos de la forma $a_{2k}$, es decir $a_0, a_2, a_4, a_6, \dots$, luego la relación de recurrencia toma la forma
+\begin{align*}
+a_{2n+2} &= \frac{(2n+3)(2n+4)}{(2n+2)(2n+1)} a_{2n},\\
+&= \frac{(2n+3)(2n+4)}{(2n+2)(2n+1)} \cdot \frac{(2n+1)(2n+2)}{(2n)(2n-1)} a_{2n-2},\\
+&= \frac{(2n+3)(2n+4)}{2n(2n-1)} a_{2n-2}
+\end{align*}
+\paragraph{}Nótese que en términos de la recurrencia anterior
+\begin{align*}
+	a_{(2n+2)-2} &= a_{2n} = \frac{(2n+3-2)(2n+4-2)}{(2n+2-2)(2n+1-2)} a_{2n-2},\\
+	&= \frac{(2n+1)(2n+2)}{2n(2n-1)} a_{2n-2}.
+\end{align*}
+\paragraph{} Continuando con el mismo procedimiento tenemos que 
+\begin{align*}
+\frac{(2n+3)(2n+4)}{2n(2n-1)} a_{2n-2} &= \frac{(2n+3)(2n+4)}{2n(2n-1)} \cdot \frac{(2n-1)(2n)}{(2n-2)(2n-3)}a_{2n-4},\\
+&=\frac{(2n+3)(2n+4)}{(2n-2)(2n-3)} a_{2n-4},\\
+\dots
+\end{align*}
+\paragraph{} cada vez que incrementamos de aquí en adelante un paso en la relación de recurrencia seguimos agregando y removiendo terminos de los pasos anteriores, sin embargo esto terminará en el término $a_2=\frac{3\cdot 4}{2 \cdot 1} a_0$, dada esta información, podemos reindexar la relación de recurrencia así
+\begin{align*}
+a_{2n} &= \frac{(2n+1)(2n+2)}{2}
+\end{align*}
+\paragraph{}Nótese que en el último paso utilizamos el hecho de que a medida que avanzamos en la serie se simplifican terminos de la iteración anterior, en el numerador es por ello que únicamente conservamos el $\frac{a_0}{2} = \frac{1}{2}$. Ahora demostraremos por inducción ésta relación de recurrencia, primero el caso base
+\begin{align*}
+a_2 = \frac{3 \cdot 4}{2 \cdot 1} = a_{0+2} = \frac{(0+3)(0+4)}{(0+2)(0+1)}.
+\end{align*}
+\paragraph{}Ahora suponemos que esto se cumple para cualquier $k>1$, luego nuestra hipótesis de inducción es
+$$
+a_{2k} = \frac{(2k +1)(2k + 2)}{2},
+$$
+\paragraph{}Nótese que
+$$a_{2k+2} = \frac{(2k+3)(2k+4)}{(2k+2)(2k+1)}a_{2k},$$
+\paragraph{} Haciendo uso de la hipótesis de inducción en la anterior expresión nos lleva a
+\begin{align*}
+\frac{(2k+3)(2k+4)}{(2k+2)(2k+1)}a_{2k} &= \frac{(2k+3)(2k+4)}{(2k+2)(2k+1)} \cdot \frac{(2k+1)(2k+2)}{2},\\
+&= \frac{(2k+3)(2k+4)}{2},\\
+&= \frac{(2(k +1) + 1)(2(k+1)+2)}{2}
+\end{align*}
+\paragraph{} que es la forma original. Por ende la proposición anterior es verdadera. Ahora utilizaremos este resultado para acercarnos a nuestra solución mediante series de potencias, por ello, tenemos que
+$$y_1 = \sum_{n=0}^{\infty} a_{2n}x^{2n} = \frac{1}{2} \sum_{n=0}^{\infty} \underbrace{(2n+2)(2n+1)x^{2n}}_{\frac{d^2}{dx^2} x^{(2n+2)}}, \hspace{10pt} a_0 = 1.$$
+\paragraph{}Uno de los términos tiene la forma de la segunda derivada de $x^{2n}$, por ende rescribiremos la anterior expresión
+\begin{align*}
+\frac{1}{2} \sum_{n=0}^{\infty} a_{2n}x^{2n} &= \frac{1}{2} \sum_{n=0}^{\infty}\frac{d^2}{dx^2} x^{(2n+2)},\\
+&= \frac{1}{2} \frac{d^2}{dx^2}\sum_{n=0}^{\infty} x^{2n+2},\\
+&= \frac{1}{2} \frac{d^2}{dx^2} \left(x^2 \sum_{n=0}^{\infty} x^{2n}\right),\\
+\end{align*}
+\paragraph{}Sin embargo, nótese que $\sum_{n=0}^{\infty} u^n = \frac{1}{1 - u}$, de modo que,
+\begin{align*}
+\frac{1}{2} \frac{d^2}{dx^2} \left(x^2 \sum_{n=0}^{\infty} x^{2n}\right) &= \frac{1}{2} \frac{d^2}{dx^2} \left(\frac{x^2}{1-x^2}\right),\\
+&= \frac{1}{2} \frac{d^2}{dx^2} \left(\frac{x^2 - 1 + 1}{1-x^2}\right),\\
+&= \frac{1}{2} \frac{d^2}{dx^2} \left(\frac{x^2 - 1}{1-x^2} + \frac{1}{1-x^2}\right),\\
+&= \frac{1}{2} \frac{d^2}{dx^2} \left(-1 + \frac{1}{1-x^2}\right),\\
+&= \frac{1}{2} \frac{d}{dx} \left(\frac{2x}{(1-x^2)^2}\right),\\
+&= \frac{1}{2} \left(\frac{2x(-2)(-2x)}{(1-x^2)^3} + \frac{2}{(1-x^2)^2}\right),\\
+&= \frac{1}{2} \left(\frac{8x^2 + 2 (1- x^2)}{(1-x^2)^3}\right),\\
+&= \frac{1}{2} \left(\frac{8x^2 + 2 - 2x^2)}{(1-x^2)^3}\right),\\
+&= \frac{1}{2} \left(\frac{6x^2 + 2}{(1-x^2)^3}\right),\\
+&= \frac{3x^2+1}{(1-x^2)^3} = y_1.\\
+\end{align*}
+\paragraph{}Ahora hallamos su derivada, es decir $y'_1$
+\begin{align*}
+\frac{d}{dx} \left(\frac{3x^2+1}{(1-x^2)^3}\right) &= \frac{(3x^2 + 1)(-3)(-2x)}{(1-x^2)^4} + \frac{6x}{(1-x)^3},\\
+&= \frac{6x(3x^2 +1) + 6x(1-x^2)}{(1-x^2)^4},\\
+&= \frac{18x^3 + 6x + 6x - 6x^3}{(1-x^2)^4},\\
+&= \frac{12x^3 + 12x}{(1-x^2)^4}.
+\end{align*}
+$$y'_1 = \frac{12x^3 + 12x}{(1-x^2)^4}.$$
+\paragraph{Identidad de Abel.} La identida de Abel dice que si tenemos una ecuación diferencial  de la forma
+$$y'' + P(x)y' +  Q(x) y = 0,$$
+\paragraph{}entonces el Wronskiano se puede escribir de dos maneras:
+\begin{equation}
+e^{-\int P(x) dx} = W = y_1 y'_2 - y_1'y_2 \label{eq:abels_id},
+\end{equation}
+\paragraph{} Vamos a hallar el wronskiano, desde \eqref{eq:std_form} conocemos que $P(x) = -\frac{8x}{1-x^2}$,
+\begin{align*}
+\int \frac{8x}{1-x^2} dx, u = 1-x^2, du = -2x dx, \text{ entonces } 8x = -4du,\\
+\int \frac{8x}{1-x^2} dx &= \int \frac{-4}{u} du = -4 \ln {u} = \ln {u^{-4}}, \text{ entonces, }\\
+e^{\ln{u^{-4}}} &= u^{-4} = \frac{1}{(1-x^2)^4},\\
+W &= \frac{1}{(1-x^2)^4} = y_1y' - y_1'y.  
+\end{align*}
+\paragraph{} Sustituimos el valor conocido para $y_1$ en la ecuación del wronkskiano,
+\begin{align*}
+W = \frac{1}{(1-x^+2)^4} &= y_1y' - y_1'y,\\
+&= \frac{3x^2+1}{(1-x^2)^3}y' - \frac{12x^3 + 12x}{(1-x^2)^4} y.
+\end{align*}
+\paragraph{}Tenemos ahora la siguiente ecuación diferencial
+\begin{equation}
+\frac{3x^2+1}{(1-x^2)^3}y' - \frac{12x^3 + 12x}{(1-x^2)^4} y = \frac{1}{(1-x^+2)^4},\label{eq:ode_2}
+\end{equation}
+\paragraph{}La cual resolveremos mediante el método del factor integrante. Pero primero debemos llevar la ecuación a la forma 
+$$y' + A(x)y = B(X),$$
+\paragraph{}Vamos a operar la ecuación \eqref{eq:ode_2} para llevarla a la forma deseada
+\begin{align*}
+\frac{3x^2+1}{(1-x^2)^3}y' - \frac{12x^3 + 12x}{(1-x^2)^4} y &= \frac{1}{(1-x^2)^4},\\
+(3x^2+1)y' - \frac{12x^3 + 12x}{1-x^2} y &= \frac{1}{1-x^2},\\
+y'- \frac{12x^3 + 12x}{(3x^2+1)(1-x^2)} y &= \frac{1}{(3x^2+1)(1-x^2)},\\
+y'+ \frac{12x^3 + 12x}{(3x^2+1)(x^2 - 1)} y &= \frac{1}{(3x^2+1)(1-x^2)},\\
+y'+ \frac{12x^3 + 12x}{(3x^2+1)(x^2 - 1)} y &= \frac{1}{(3x^2+1)(1-x^2)},\\
+\end{align*}
+\paragraph{}Luego,
+$$A(x) = \frac{12x^3 + 12x}{(3x^2+1)(x^2 - 1)},$$
+$$B(x) = \frac{1}{(3x^2+1)(1-x^2)},$$
+\paragraph{}y por el método del factor integrante, debemos hallar
+$$\alpha(x) = e^{\int A(x) dx},$$
+\paragraph{} Calculamos ahora la integral mediante fracciones parciales,
+\begin{align*}
+\frac{12x^3 + 12x}{(3x^2+1)(x^2 - 1)} &= \frac{12x^3 + 12x}{(3x^2+1)(x - 1)(x + 1)},\\
+&= \frac{A}{x+1} + \frac{B}{x-1} + \frac{Cx+ D}{3x^2 + 1},\\
+12x^3 + 12x &= 	A(x-1)(3x^2 + 1) + B(x+1)(3x^2 + 1) + (Cx + D)(x^2 - 1),\\
+&= 3Ax^3 - 3Ax^2 + Ax - A + 3Bx^3 + 3Bx^2 + Bx + B + Cx^3 + Dx^2 - Cx - D,\\
+&= x^3(3A + 3B + C) + x^2(-3A + 3B + D) + x(A + B - C) + (-A + B + D)
+\end{align*}
+\paragraph{}Agrupando términos semejantes, tenemos el siguiente sistema de equaciones
+\begin{equation}
+12 = 3A + 3B + C,\label{eq:pf_1}
+\end{equation}
+\begin{equation}
+0 = -3A + 3B + D,\label{eq:pf_2}
+\end{equation}
+\begin{equation}
+12 = A + B - C,\label{eq:pf_3}
+\end{equation}
+\begin{equation}
+0 = -A + B + D.\label{eq:pf_4}
+\end{equation}
+\paragraph{}De las ecuaciones \eqref{eq:pf_2} y \eqref{eq:pf_4} se sigue que $D=0$ y que $A=B$: multiplicando \eqref{eq:pf_4} por $(-3)$ y sumamos con la ecuación \eqref{eq:pf_2}, reemplazando el resultado $D=0$ en \eqref{eq:pf_4} vemos que $A=B$. Ahora hallamos el valor de $A$ y $B$. Sumando las ecuaciones \eqref{eq:pf_1} y \eqref{eq:pf_3} $24 = 4A + 4B$, pero $A=B$ luego $24=8B$ entonces $A=B=3$, así las cosas hallamos $C$, reemplazando en la ecuación \eqref{eq:pf_3} tenemos que $12 = 6 - C$, luego $C= -12 + 6 = -6$ y reemplazando de nuevo $A(x)$,
+$$A(x) = \frac{3}{x+1} + \frac{3}{x-1} - \frac{6x}{3x^2 + 1}.$$
+\paragraph{} Ahora hallamos la integral $A(x)$,
+\begin{align*}
+\int A(x) dx &= \int \left(\frac{3}{x+1} + \frac{3}{x-1} - \frac{6x}{3x^2 + 1}\right)dx,\\
+\int \left(\frac{3}{x+1} + \frac{3}{x-1} - \frac{6x}{3x^2 + 1}\right)dx &= 3\ln{(x+1)} + 3\ln{(x-1)} - \ln{(3x^2 + 1)},\\
+&=  \ln{\frac{(x^2-1)^3}{3x^2 + 1}}.
+\end{align*}
+\paragraph{Resolviendo la ecuación diferencial de primer orden.} Ahora sutituyendo, hallamos el factor integrante
+$$\alpha(x) = e^{\ln{\frac{(x^2-1)^3}{3x^2 + 1}}} = \frac{(x^2-1)^3}{3x^2 + 1}$$
+\paragraph{}Por el método del factor integrante, la solución tiene la forma
+$$y = \frac{1}{\alpha(x)}\left(C + \int \alpha(x)B(x)dx\right),$$
+\paragraph{}Sustituyendo con los valores ya conocidos, rescribimos la expresión anterior como
+\begin{align*}
+y &= -\frac{3x^2 + 1}{(x^2-1)^3} \int \frac{(x^2 - 1)^2}{(3x^2+1)^2}dx,\\
+\end{align*}
+\paragraph{} Ahora debemos resolver la integral
+$$\int \frac{(x^2 - 1)^2}{(3x^2 + 1)^2} dx,$$
+\paragraph{}la resolveremos mediante fracciones parciales. Primero realizaremos el cociente
+\begin{align*}
+\frac{(x^2 - 1)^2}{(3x^2 + 1)^2} &= \frac{x^3 - 2x^2 + 1}{9x^4 + 6x^2 +1},\\
+&= \frac{1}{9} + \frac{8}{9(3x^2 + 1)^2} - \frac{8x^2}{3(3x^2 + 1)^2}
+\end{align*}
+\paragraph{} para los últimos dos términos utilizaremos fracciones parciales, pero primero debemos rescribirlos,
+\begin{align*}
+\frac{8}{9(3x^2 + 1)^2} - \frac{8x^2}{3(3x^2 + 1)^2} &= \frac{\frac{8}{9} - \frac{8x}{3}}{(3x^2 + 1)^2},\\
+&= \frac{\frac{8}{9} - \frac{24x}{9}}{(3x^2 + 1)^2},\\
+&= \frac{\frac{8}{9}(1 - 3x^2)}{(3x^2 + 1)^2},\\
+&= \frac{-\frac{8}{9}(3x^2 - 1)}{(3x^2 + 1)^2},\\
+&= \frac{-8(3x^2 - 1)}{9(3x^2 + 1)^2}
+\end{align*}
+\paragraph{}Dada la forma de los términos del denominador, supondremos la siguiente expansión en fracciones parciales
+\begin{align*}
+\frac{-8(3x^2 - 1)}{9(3x^2 + 1)^2} &= \frac{Ax + B}{3x^2 +1} + \frac{Cx + D}{(3x^2 + 1)^2},\\
+&= \frac{(Ax + B)(3x^2 + 1) + Cx + D}{(3x^2 + 1)^2},\\
+\frac{-8}{9}(3x^2 -1) &= (Ax + B)(3x^2 + 1) + Cx + D,\\
+\frac{-8}{3}x^2 + \frac{8}{9} &= 3Ax^3 + Ax + 3Bx^2 + B + Cx + D,\\
+&= 3Ax^3 + 3Bx^2 + x(A+C) + B + D,
+\end{align*}
+\paragraph{}Asociando términos semejantes, tenemos el siguiente sistema de ecuaciones a resolver,
+\begin{equation}
+x^3: 0 = 3A \rightarrow A = 0\label{eq:pfp_1},
+\end{equation}
+\begin{equation}
+x^2: -\frac{8}{3} = 3B \rightarrow B = -\frac{8}{9}\label{eq:pfp_2},
+\end{equation}
+\begin{equation}
+x: 0 = A + C = 0 + C = 0 \rightarrow C = 0\label{eq:pfp_3},
+\end{equation}
+\begin{equation}
+\frac{8}{9}: \frac{8}{9} = B + D = -\frac{8}{9} + D \rightarrow D = \frac{16}{9}\label{eq:pfp_4},
+\end{equation}
+\paragraph{} dados los resultados de las ecuaciones \eqref{eq:pfp_1}, \eqref{eq:pfp_2}, \eqref{eq:pfp_3} y \eqref{eq:pf_4} al ser sustituídos el la expansión propuesta, nos deja
+\begin{align*}
+\frac{-8(3x^2 - 1)}{9(3x^2 + 1)^2} &= \frac{0 - \frac{8}{9}}{3x^2 +1} + \frac{0 + \frac{16}{9}}{(3x^2 + 1)^2},\\
+&= - \frac{8}{9(3x^2 + 1)} + \frac{16}{9(3x^2 + 1)^2}.
+\end{align*}
+\paragraph{} Devolviendonos a la integral original, ahora podemos rescribirla como
+\begin{align*}
+\int \frac{(x^2 - 1)^2}{(3x^2 + 1)^2} dx &= \int \left(\frac{1}{9} - \frac{8}{9(3x^2 + 1)} + \frac{16}{9(3x^2 + 1)^2} \right)dx,\\
+&= \frac{1}{9}x + \int \frac{16}{9(3x^2 + 1)^2} dx - \int \frac{8}{9(3x^2 +1)} dx,
+\end{align*}
+\paragraph{}Resolveremos ahora la primera integral, para ello realizaremos sutituciones trigonométricas, 
+$$x = \frac{\tan{(s)}}{\sqrt{3}}, \hspace{5pt} dx = \frac{\sec^2{(s)}}{\sqrt{3}}ds,$$
+\paragraph{} con $s = \arctan{(\sqrt{3}x)}$, y por ende también
+$$(3x^2 +1)^2 = (\tan^2{(s)} + 1)^2 = \sec^4{(s)},$$
+\paragraph{}luego, reescribimos la integral como
+\begin{align*}
+\int \frac{16}{9(3x^2 + 1)^2} dx &= \frac{16}{9\sqrt{3}} \int \frac{\sec^2{(s)}}{\sec^4{(s)}}ds,\\
+&= \frac{16}{9\sqrt{3}} \int \frac{1}{\sec^2{(s)}}ds,\\
+&= \frac{16}{9\sqrt{3}} \int \cos^2{(s)}ds,\\
+&= \frac{16}{9\sqrt{3}} \int \left(\frac{1}{2}\cos{(2s) + \frac{1}{2}}\right) ds,\\
+&= \frac{16}{9\sqrt{3}} \left(\frac{1}{4}\sin{(2s)} + \frac{1}{2} s\right),\\
+&= \frac{4}{9\sqrt{3}} \sin{(2s)} + \frac{8}{9\sqrt{3}}s.
+\end{align*}
+\paragraph{}ahora volvemos en términos de $x$,
+$$ \frac{4}{9\sqrt{3}} \sin{(2\arctan{(\sqrt{3}x)})} + \frac{8}{9\sqrt{3}}\arctan{(\sqrt{3}x)},$$
+\paragraph{} Rescribimos el primer término utilizando la identidad
+$$2\arctan{(x)} = \arcsin{\left(\frac{2x}{1+x^2}\right)},$$
+\paragraph{}De modo que
+\begin{align*}
+\frac{4}{9\sqrt{3}} \sin{(2s)} &= \frac{4}{9\sqrt{3}} \sin{\left(\arcsin{\left(\frac{2\sqrt{3}x}{1+ 3x^2}\right)}\right)},\\
+&= \frac{4}{9\sqrt{3}} \left(\frac{2\sqrt{3}x}{1+ 3x^2}\right),\\
+&= \frac{8x}{9(1 - 3x^2)},\\
+&= \frac{8x}{9(3x^2 + 1)}.
+\end{align*}
+\paragraph{} Luego,
+$$\int \frac{16}{9(3x^2 + 1)^2} dx = \frac{8x}{9(3x^2 + 1)} + \frac{8}{9\sqrt{3}}\arctan{(\sqrt{3}x)}$$
+\paragraph{}Ahora resolveremos la segunda integral también por sustitución. Sea
+$$- \int \frac{8}{9(3x^2 +1)}, u=\sqrt{3}x, \hspace{5pt} du = \sqrt{3}dx,$$
+\paragraph{} de modo que al rescribir tenemos la integral
+$$- \int \frac{8}{9(3x^2 +1)} dx = -\frac{8}{9\sqrt{3}} \int \frac{1}{u^2 + 1} du = -\frac{8}{9\sqrt{3}} \arctan{(\sqrt{3}x)}.$$
+\paragraph{}Juntando el resultado anterior, tenemos que 
+\begin{align*}
+\int \frac{(x^2 - 1)^2}{(3x^2 + 1)^2} dx &= \int \left(\frac{1}{9} - \frac{8}{9(3x^2 + 1)} + \frac{16}{9(3x^2 + 1)^2} \right)dx,\\
+\int \left(\frac{1}{9} - \frac{8}{9(3x^2 + 1)} + \frac{16}{9(3x^2 + 1)^2} \right)dx &= \frac{1}{9}x -\frac{8}{9\sqrt{3}} \arctan{(\sqrt{3}x)} +\frac{8x}{9(3x^2 + 1)} + \frac{8}{9\sqrt{3}}\arctan{(\sqrt{3}x)},\\
+&= \frac{1}{9}x +\frac{8x}{9(3x^2 + 1)},\\
+&= \frac{x(3x^2+1) + 8x}{9(3x^2 + 1)},\\
+&= \frac{3x^3 + x + 8x}{9(3x^2 + 1)},\\
+&= \frac{3x^3 + 9x}{9(3x^2 + 1)},\\
+&= \frac{3x(x^2 + 3)}{9(3x^2 + 1)},\\
+&= \frac{x(x^2 + 3)}{3(3x^2 + 1)},\\
+&= \frac{x(x^2 + 3)}{9x^2 + 3}.\\
+\end{align*}
+\paragraph{}Volviendo nuevamente a nuestra solución particular, ésta toma la forma
+\begin{align*}
+y &= \frac{3x^2+1}{(x^2-1)^3}\left(\frac{x(x^2 + 3)}{9x^2 + 3}\right),\\
+&= \frac{3x^2+1}{(x^2-1)^3}\left(\frac{x(x^2 + 3)}{3(3x^2 + 1)}\right),\\
+&= \frac{1}	{(x^2-1)^3}\left(\frac{x(x^2 + 3)}{3}\right),\\
+&= \frac{x(x^2 + 3)}{3(x^2-1)^3}.\\
+\end{align*}
+\paragraph{}Y finalmente, por el principio de superposición la suma de nuestras soluciones serán la solución general,
+\begin{align*}
+y &= C_1\left(\frac{3x^2 + 1}{(1-x^2)^3}\right) + C_2 \left(\frac{x(x^2 + 3)}{3(x^2-1)^3}\right),\\
+&= C_1\left(\frac{3x^2 + 1}{(1-x^2)^3}\right) + C_2 \left(\frac{x(x^2 + 3)}{3(1 - x^2)^3}\right),\\
+&= \frac{3C_1(3x^2+ 1) + C_2 x(x^2 + 3)}{3(1-x^2)^3}.
+\end{align*}
+\paragraph{}Nótese que las constantes de integración fueron únicamente añadidas al final y como nota final, en el video debido a un error en 58:28:27 se olvida incluir $3$ en el denominador de la fracción y por ello los resultados difieren del video.
+\paragraph{2.} Establish the following properties of the Bessel series
+\paragraph{} Las series de Bessel tienen la forma:
+\begin{equation}
+J_p(x) = \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{x}{2})^{2n+p}}{n! (n-p)!}.\label{eq:bessel_1}
+\end{equation}
+\subparagraph{(a)} $J_0(0) = 1,J_p(0)=0$ si $p > 0$. Sustituyendo en \eqref{eq:bessel_1}, tenemos que:
+\begin{align*}
+	J_0(0) &= \sum_{n=0}^{\infty} (-1)^n \frac{0}{n! \cdot n!} = \sum_{n=0}^{\infty} 0 = 0.\\[5pt]
+	J_p(0) &= \sum_{n=0}^{\infty} (-1)^n \frac{0}{n! (n-p)!} = \sum_{n=0}^{\infty} 0 = 0.
+\end{align*}
+\subparagraph{(b)} $J_n(x)$ is an even function if $n$ is even, and odd if $n$ is odd.
+\paragraph{Si es par.} $n=2k$ y por ende su serie de Bessel es de la forma
+\begin{equation}
+J_{2k} (x) = \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{x}{2})^{2(n+k)}}{n! (n + 2k)!}\label{eq:bessel_even},
+\end{equation}
+\paragraph{} se evidencia que $f(x) = f(-x)$, porque el numerador $(\frac{x}{2})$ siempre estará elevado a un número par, por lo que:
+$$\left(\frac{-x}{2}\right)^{2(n+k)} = \left(\frac{x}{2}\right)^{2(n+k)}.$$
+\paragraph{Si es impar.} $n=2k+1$, la serie de Bessel es de la forma
+\begin{equation}
+J_{2k+1} (x) = \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{x}{2})^{2(n+k) + 1}}{n! (n+2k+1)!}\label{eq:bessel_odd},
+\end{equation}
+\paragraph{} de modoque se evidencia que $f(x) \neq f(-x)$, pues el numerador $(\frac{x}{2})^{2(n+k) + 1}$ siempre estará elevado a un número impar y no se cumplirá que
+$$\left(\frac{-x}{2}\right)^{2(n+k) + 1} = \left(\frac{x}{2}\right)^{2(n+k) + 1}.$$
+\subparagraph{(c)} $\lim\limits_{x \rightarrow 0^+} \frac{J_p(x)}{x^p} = \frac{1}{2 \Gamma(p+1)}$.
+\paragraph{} Plateamos y desarrollamos el siguiente límite
+\begin{align*}
+\lim\limits_{n \rightarrow 0^+} \frac{J_p(x)}{x^p} &= \lim\limits_{n \rightarrow 0^+} \sum_{n=0}^{\infty} (-1)^n \frac{(\frac{x}{2})^{2n + p}}{n!(n+p)! x^p}\\
+&= \lim\limits_{n \rightarrow 0^+} \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{2^p \cdot n!(n+p)!}\\
+&= 1 \cdot \frac{x^0}{2^p 1! (1 + p)!}\\
+&= \frac{1}{2^p 1! (1 + p)!}\\
+&= \frac{1}{2^p \Gamma(1+p)}.
+\end{align*}
+\paragraph{3} Proof the identities.
+\subparagraph{(a)} $J_{\frac{3}{2}}(x) = \sqrt{\frac{2}{\pi x}} \left[\frac{\sin{x}}{x} - \cos {x}\right].$
+\paragraph{} Primero demostraremos la siguiente propiedad:
+\begin{equation}
+\frac{2n}{x} J_n(x) = J_{n-1}(x) + J_{n+1}(x)\label{eq:prop_a},
+\end{equation}
+\paragraph{} Consideremos la siguiente derivada:
+\begin{align*}
+ \frac{d}{dx}\hspace{5pt}\left(x^{-n} J_n(x)\right)
+&= \frac{d}{dx} \hspace{5pt} \sum_{n=0}^{\infty} \frac{(-1)^k x^{2k}}{2^{n+2k} k! \Gamma(n+k+1)},\\
+&= \sum_{k=1}^{\infty}  \frac{(-1)^k 2k x^{2k-1}}{2^{n+2k} k! \Gamma(n+k+1)},\\
+&= \sum_{k=1}^{\infty}  \frac{(-1)^k 2k x^{2k-1}}{2^{n+2k} k (k-1)! \Gamma(n+k+1)},\\
+&= \sum_{k=1}^{\infty}  \frac{(-1)^k x^{2k-1}}{2^{n + 2k - 1}(k-1)! \Gamma(n+k+1)},\\
+&= \sum_{k=0}^{\infty}  \frac{(-1)^{k+1} x^{2k+1}}{2^{n + 2k + 1}(k)!\Gamma(n+k+2)},\\
+&= \sum_{k=0}^{\infty}  \frac{(-1)^{k+1} x^{2k+1}}{2^{n + 2k + 1}(k)!\Gamma(n+k+2)},\\
+&= -x^{-n} \sum_{k=0}^{\infty} \frac{(-1)^k x^{(n+1)+2k}}{2^{n+1 + 2k} k! \Gamma(n+1+k+1)},\\
+&= -x^{-n} J_{n+1}(x),
+\end{align*}
+\paragraph{}de esta forma 
+\begin{equation}
+\frac{d}{dx} \hspace{5pt} (x^{-n} J_n(x)) = -x^{-n} J_{n+1}(x)\label{eq:prop_a2}.
+\end{equation}
+\paragraph{} Ahora consideremos la derivada:
+
+\begin{align*}
+\frac{d}{dx} \hspace{5pt} (x^n J_n(x)) 
+&= \frac{d}{dx} \hspace{5pt} \sum_{k=0}^{\infty} \frac{(-1)^k x^{2(n+k)}}{2^{n+2k} k! \Gamma(n+k+1)},\\
+&= \sum_{k=0}^{\infty} \frac{(-1)^k 2(n+k)x^{2(n+k)-1}}{2^{n+2k} k! \Gamma(n+k+1)},\\
+&= \sum_{k=0}^{\infty} \frac{(-1)^k 2(n+k)x^{2(n+k)-1}}{2^{n+2k} k!(n+k) \Gamma(n+k)},\\
+&= \sum_{k=0}^{\infty} \frac{(-1)^k x^{2(n+k)-1}}{2^{n+2k-1} k! \Gamma(n+k)},\\
+&= \sum_{k=0}^{\infty} \frac{(-1)^k x^{(n-1)+2k}}{2^{(n-1)+2k} k! \Gamma((n-1)+k+1)},\\
+&= x^n \sum_{k=0}^{\infty} \frac{(-1)^k x^{(n-1)+2k}}{2^{(n-1)+2k} k! \Gamma((n-1)+ k + 1)},\\
+&= x^n J_{n-1}(x),
+\end{align*}
+\paragraph{}de esta forma
+\begin{equation}
+\frac{d}{dx} \hspace{5pt} (x^n J_n(x)) = x^n J_{n-1}(x) \label{eq:prop_a3}.
+\end{equation}
+\paragraph{} Ahora, de las expresiones \eqref{eq:prop_a2} y \eqref{eq:prop_a3} despejemos $J_{n+1}(x)$ y $J_{n-1}(x)$ respectivamente
+\begin{align}
+J_{n+1} &= -x^n \frac{d}{dx} (x^{-n} J_n(x))
+= -x^n(x^{-n}J'_n(x) - n x^{n-1} J_n(x)),\\
+&= -J'_n(x) + \frac{n}{x} J_n(x) \label{eq:prop_a4}.
+\end{align}
+\begin{align}
+J_{n-1}(x) &= x^{-n} \frac{d}{dx} \hspace{5pt} (x^n J_n(x))
+= -x^{-n}(x^n J'_n(x) + nx^{n-1}J_n(x)),\\
+&= J'_n(x) + \frac{n}{x} J_n(x)\label{eq:prop_a5}.
+\end{align}
+\paragraph{}sumando las expresiones \eqref{eq:prop_a4} y \eqref{eq:prop_a5} se tiene que:
+\begin{align}
+J_{n+1}(x) + J_{n-1}(x) &= -J'_n(x) + \frac{n}{x} J_n(x) + J'_n(x) + \frac{n}{x} J_n(x),\\
+&= \frac{n}{x} J_n(x) + \frac{n}{x} J_n(x),\\
+&= \frac{2n}{x} J_n(x) \label{eq:prop_a6}.
+\end{align}
+\paragraph{}donde,
+$$
+\left(n+\frac{1}{2}\right)
+\left(n-\frac{1}{2}\right)
+\dots
+\left(\frac{3}{2}\right)
+\left(\frac{1}{2}\right)
+=
+\left(\frac{2n + 1}{2}\right)
+\left(\frac{2n - 1}{2}\right)
+\dots
+\left(\frac{3}{2}\right)
+\left(\frac{1}{2}\right)
+$$
+\begin{align*}
+&= \frac{1}{2^{n+1}} (2n+1)(2n-1)\dots(3)(1),\\
+&= \frac{1}{2^{n+1}} \frac{(2n+2)(2n+1)(2n)(2n-1)\dots(4)(3)(2)(1)}{(2n+2)(2n)\dots(4)(2)},\\
+&= \frac{1}{2^{n+1}} \frac{(2n+2)!}{2^{n+1}(n+1)(n)\dots(2)(1)},\\
+&= \frac{1}{4^{n+1}} \frac{(2n+2)!}{(n+1)!}
+\end{align*}
+\paragraph{}y $\int_{0}^{\infty} t^{-\frac{1}{2}} e^{-t}$, por sustitución, $y = t^{\frac{1}{2}}, dy = \frac{1}{2} y^{-\frac{1}{2}}dt$, luego rescribiendo la integral, tenemos que
+$$Q = 2 \int_{0}^{\infty} e^{-y^2} dy,$$
+\paragraph{} ahora diremos que 
+\begin{align*}
+Q^2 &= 2\left(\int_{0}^{\infty} e^{-x^2} dx\right) \left(\int_{0}^{\infty} e^{-y^2} dy\right) = 2 \int_{0}^{\infty} \left(\int_{0}^{\infty}e^{-x^2} dx\right) e^{-y^2} dy,\\
+&= 2 \int_{0}^{\infty} \left(\int_{0}^{\infty} e^{i-x^2 + y^2}dx\right)dy = 2 \int_{0}^{\frac{\pi}{2}} \left(\int_{0}^{\infty}e^{-r^2}r dr\right) d\theta,\\
+&= 2 \int_{0}^{\frac{\pi}{2}} \left(-\frac{1}{2} e^{-r^2} \bigg|_{0}^{\infty}\right)d\theta = 2\int_{0}^{\frac{\pi}{2}} \frac{1}{2} d\theta = \pi,
+\end{align*}
+\paragraph{} Si $Q^2 = \pi$, $Q = \sqrt{\pi}$. De manera que $\Gamma(k + \frac{3}{2}) = \frac{1}{4^{n+1}} \frac{(2n+2)!}{(n+1)!} = \sqrt{\pi}$ y 
+\begin{align*}
+J_{\frac{1}{2}}(x) &= \sqrt{\frac{2}{x}} \sum_{k=0}^{\infty} \frac{(-1)^k 2^{(2k+1)}k! x^{2k+1}}{2^{2k+1}k!(2k+1)! \sqrt{\pi}},\\
+&= \sqrt{\frac{2}{\pi x}} \sum_{k=0}^{\infty} \frac{(-1)^j}{(2k+1)!} x^{2k+1}, \text{ y por series de Taylor que }\\
+&= \sqrt{\frac{2}{\pi x}} \sin{x}.
+\end{align*}
+\paragraph{} De manera análoga se tiene que
+$$J_{-\frac{1}{2}}(x) = \sqrt{\frac{2}{\pi x}} \cos {x},$$
+\paragraph{} y reemplazando los dos resultados anteriores en la equación \eqref{eq:prop_a}, se tiene que
+\begin{align*}
+J_{\frac{3}{2}}(x) &= - \sqrt{\frac{2}{\pi x}} \cos{x} + \frac{1}{x} \sqrt{\frac{2}{\pi x}} \sin{x},\\
+&= \sqrt{\frac{2}{\pi x}}\left(\frac{\sin{x}}{x} - \cos {x}\right) \hspace{20pt} \blacksquare.
+\end{align*}
+\subparagraph{(b)} $J_{-\frac{3}{2}}(x) = \sqrt{\frac{2}{\pi x}} \left[-\frac{\cos{x}}{x} - \sin{x}\right]$. Aplicando las propiedades desarrolladas en el inciso (a), tenemos que
+\begin{align*}
+\frac{2n}{x} J_{n}(x) &= -J_{n-1}(x) + J_{n+1}(x),\\
+J_{n-1}(x) &= \left(J_{n+1}(x) - \frac{2n}{x} J_n(x)\right).
+\end{align*}
+\paragraph{}Si $J_{n-1}(x) = J_{-\frac{3}{2}}(x)$, ello implica que $n=-\frac{1}{2}$ y que
+\begin{align*}
+J_{-\frac{3}{2}}(x) &= \left(J_{-\frac{1}{2}}(x) - \frac{1}{x} J_{-\frac{1}{2}}(x)\right),\\
+&= -\sqrt{\frac{2}{\pi x}} \sin {x} - \frac{1}{x} \sqrt{\frac{2}{\pi x}} \cos{x},\\
+&= \sqrt{\frac{2}{\pi x}} \left(-\sin{x} - \frac{\cos{x}}{x}\right).
+\end{align*} 
+\paragraph{4} Prove that
+\subparagraph{(a)} $\cos{(x)} = J_0(x) + 2 \sum_{k=1}^{\infty} (-1)^k J_{2k}(x)$.
+\paragraph{} Una de las funciones generadoras de $J_n(x)$ es 
+\begin{equation}
+g(x,t) = e^{\left(\frac{x}{2}\right)(z - z^{-1})}\label{eq:prop_4a1},
+\end{equation}
+\paragraph{} y
+\begin{align*}
+e^{\left(\frac{x}{2}\right)(z - z^{-1})} &= \sum_{i=0}^{\infty} \frac{\left(\frac{x}{2}\right)^i}{i!}z^i \sum_{j=0}^{\infty} \frac{(-1)^j \left(\frac{x}{2}\right)^i}{j!} z^{-j}, \hspace{20pt}\text{ (series de Taylor),}\\
+&= \sum_{n=-\infty}^{\infty} \left(\sum_{i-j=n, i,j\geq 0} \frac{(-1)^j \left(\frac{x}{2}\right)^{i+j}}{i!j!}\right)z^n, \hspace{20pt} \text{ (propiedades de sumatoria),}\\
+&= \sum_{n=-\infty}^{\infty} \left(\sum_{j=0}^{\infty} \frac{(-1)^j}{(n+j)!j!} \left(\frac{x}{2}\right)^{2j} \left(\frac{x}{2}\right)^n\right)z^n,\\
+&= \sum_{n=-\infty}^{\infty} J_n(x) z^n.
+\end{align*}
+\paragraph{} Ahora, por la fórmula de Euler, podemos establecer que $z = e^{i\theta}$ y $i\sin{\theta} = \frac{1}{2} (z - z^-1)$, obteniendo que
+\begin{align*}
+& \cos{(x\sin{\theta})} + i\sin{(x\sin{\theta})} = e^{ix\sin{\theta}} = \sum_{n=-\infty}^{\infty} J_n(x)e^{in\theta},\\
+&= \sum_{n=-\infty}^{\infty} J_n(x)(\cos{(n\theta)} + i \sin{(n\theta)}),
+\end{align*}
+\paragraph{}Por lo que
+\begin{equation}
+	\cos{(x\sin{\theta})} = \sum_{n=-\infty}^{\infty} J_n(x)\cos{(n\theta)} \hspace{10pt} \text{ y } \hspace{10pt} \sin{(x\sin{\theta})} = \sum_{n=-\infty}^{\infty} J_n(x)\sin{(n\theta)}\label{eq:prop_4a2}.
+\end{equation}
+\paragraph{}Si $\theta = \frac{\pi}{2}, \cos{x} = \sum_{n=-\infty}^{\infty}J_n(x)\cos{\left(\frac{n\pi}{2}\right)}.$
+\paragraph{}Supongamos que $n=0$, así $\cos{\left(\frac{n\pi}{2}\right)} =\cos{\left(\frac{-n\pi}{2}\right)} = 1$.
+\paragraph{} Por el ejercicio (3) del taller se puede concluir que $J_{-n}(x) = (-1)^n J_n(x),$ de hecho como la función gamma está definida para $\mathbb{N}$,
+\begin{align*}
+J_{-n}(x) &= \sum_{k=n}^{\infty} \frac{(-1)^k \left(\frac{x}{2}\right)^{2k -n}}{\Gamma(k+1) \Gamma(-n+k+1)},\\
+&= \left(\frac{x}{2}\right)^{-n} \sum_{k=0}^{\infty} \frac{(-1)^{k+n}}{\Gamma(n+k+1)\Gamma(-n+n+k-1)} \left(\frac{x}{2}\right)^{2(n+k)}\\
+&= \left(\frac{x}{2}\right)^{-n} \left(\frac{x}{2}\right)^{2n} \sum_{k=0}^{\infty} \frac{(-1)^k(-1)^n}{\Gamma(n+k-1)\Gamma(k+1)} \left(\frac{x}{2}\right)^{2k},\\
+&= (-1)^{n}J_n(x).
+\end{align*}
+\paragraph{} entonces,
+\begin{align*}
+J_n(x)\cos{\left(\frac{n\pi}{2}\right)} + J_{-n}(x) \cos{\left(\frac{-n\pi}{2}\right)} &= J_n(x) + J_n(x),\\
+&= 2J_n(x). 
+\end{align*}
+\paragraph{}Si $n=1$ ó $n=3$, $\cos{\left(\frac{n\pi}{2}\right)} = \cos{\left(\frac{-n\pi}{2}\right)} = 0$.
+\paragraph{}Si $n=2$, $\cos{\left(\frac{n\pi}{2}\right)} = \cos{\left(\frac{-n\pi}{2}\right)} = -1.$
+\paragraph{}Si $n=4$, pues tenemos el mismo caso de $n=0$ y así sucesivamente.
+\paragraph{}De esta forma, tomando en cuenta todos los posibles valores que puede tomar $n$, se reescribe $\cos{x}$ así
+$$
+\cos{x} = \underbrace{2 \sum_{n=1}^{\infty} J_{2n}(-1)^n}_{\text{ Para } n = 0, 2, 4, \dots}.
+$$
+\subparagraph{(b)} $\sin{(x)} = 2 \sum_{k=0}^{\infty} (-1)^k J_{2k+1}(x).$ De la ecuación \eqref{eq:prop_4a2}
+\paragraph{}Si $\theta = \frac{\pi}{2}$, $\sin{(x)} = \sum_{n=-\infty}^{\infty} J_n(x) \sin{\left(\frac{-n\pi}{2}\right)}.$
+\paragraph{}Supongamos que
+\begin{align*}
+&n=1, \hspace{10pt} \sin{\left(\frac{n\pi}{2}\right)} = 1, \sin{\left(\frac{-n\pi}{2}\right)} = -1,\\
+&n=2, \hspace{10pt} \sin{\left(\frac{n\pi}{2}\right)} = \sin{\left(\frac{-n\pi}{2}\right)} = 0,\\
+&n=3, \hspace{10pt} \sin{\left(\frac{n\pi}{2}\right)} = -1, \sin{\left(\frac{-n\pi}{2}\right)} = 1,
+\end{align*}
+\paragraph{}aplicando la propiedad $J_{-n}(x) = (-1)^n J_n(x)$ en $n=1$ y $n=3$,
+\begin{align*}
+J_n(x)\sin{\left(\frac{n\pi}{2}\right)} + J_{-n}(x)\sin{\left(\frac{-n\pi}{2}\right)} &= J_n(x) + (-1) J_{-n}(x) = 2J_n(x), (\text{ con } n=1).\\
+J_n(x)\sin{\left(\frac{n\pi}{2}\right)} + J_{-n}(x)\sin{\left(\frac{-n\pi}{2}\right)} &= J_n(x)(-1) + J_{-n}(x) = -2J_n(x), (\text{ con } n=3).
+\end{align*}
+\paragraph{}Reescribimos la suma así
+\begin{align*}
+\sin{x} = 2\sum_{n=0}^{\infty} \underbrace{J_{2n+1}}_{n = 1, 3, \dots}(-1)^n.
+\end{align*}
+\paragraph{5} For $x, y > 0$
+$$\frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)} = 2 \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta} \sin^{2y-1}{\theta} d\theta.$$
+\paragraph{} Derive this useful formula as follows.
+\subparagraph{(a)} Make the change of variables $u^2 = t$ in definition of Gamma function and obtain
+$$\Gamma(x) = 2 \int_{0}^{\infty} e^{-u^2} u^{2x-1} du, x> 0.$$
+\subparagraph{(b)} Use (a) to show that for $x, y > 0$,
+$$\Gamma(x)\Gamma(y) = 4 \int_{0}^{\infty} \int_{0}^{\infty} e^{-(u^2 + v^2)} u^{2x-1}v^{2y-1} du dv.$$
+\subparagraph{(c)} Change to polar coordinates in (b) $(u = r \cos{\theta}, v = r\sin{\theta}, du dv = r dr d \theta)$ and obtain that for $x,y>0$,
+$$\Gamma(x)\Gamma(y) = 2 \Gamma(x+y) \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta}\sin^{2y-1}{\theta} d\theta.$$
+\paragraph{Solución.}
+$$\frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)} = 2 \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta} \sin^{2y-1}{\theta} d\theta.$$
+$$\Gamma(x)\Gamma(y) = \left(\int_{0}^{\infty} t^{x-1}e^{-t} dt\right) \left(\int_{0}^{\infty}t_2^{y-1}e^{-t_2} dt_2\right),$$
+\paragraph{}Por sustitución $u^2 = t, 2u du = dt,$
+\begin{align*}
+&= 4 \left(\int_{0}^{\infty}u^{2x-1}e^{-u^2}du\right) \left(\int_{0}^{\infty}v^{2y -1} e^{-v^2}\right),\\
+&= 4 \int_{0}^{\infty}\left(\int_{0}^{\infty}u^{2x-1}v^{2y-1} e^{-(u^2 + v^2)}du\right)dv,
+\end{align*}
+\paragraph{} Cambiando a coordenadas polares
+$$u = r\cos{\theta}, v = r\sin{\theta},$$
+\begin{align*}
+&= 4 \int_{0}^{\frac{\pi}{2}}\left(\int_{0}^{\infty}r^{2x-1} \cos^{2x-1}{\theta} r^{2y -1} \sin^{2y-1}{\theta} e^{-r^2} r dr\right)d\theta,\\
+&= 4\int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta}\sin^{2y-1}{\theta}\left(\int_{0}^{\infty}e^{-r^2}r^{2x+2y-1} dr\right)d\theta,\\
+&= 4 \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta}\sin^{2y-1}{\theta} \left(-\frac{1}{2} e^{-r^2}\bigg|_0^\infty \cdot \int_{0}^{\infty} e^{-r} r^{x+y-1}dr\right) d\theta,\\
+&= 2 \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta} \sin^{2y-1}{\theta} \cdot \Gamma(x+y) d\theta,\\
+&= 2 \Gamma(x+y) \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta}\sin^{2y-1}{\theta} d\theta,
+\end{align*}
+\paragraph{}y que puede reescribirse como,
+$$\frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)} = 2 \int_{0}^{\frac{\pi}{2}} \cos^{2x-1}{\theta} \sin^{2y-1}{\theta} d\theta.$$
+\nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
+
+\end{document}
